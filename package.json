@@ -1,0 +1,51 @@
+{
+  "name": "contribs",
+  "private": true,
+  "description": "",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "create": "",
+    "update": "",
+    "build": "npm-run-all -p prebuild:* && npm-run-all -p build:*",
+    "build:css": "stylus -u autoprefixer-stylus -I node_modules/yeticss/lib -c -o static/css _styl/main.styl",
+    "build:hugo": "hugo",
+    "prebuild:js": "browserify js/popup.js -o static/js/popup.js && browserify js/stars.js -o static/js/stars.js",
+    "deploy": "hugo && ipfs add -r public",
+    "minify": "npm-run-all minify:*",
+    "minify:img": "find public/images -type d -exec imagemin {}/* --out-dir={} \\; && find public/blog/static -type d -exec imagemin {}/* --out-dir={} \\;",
+    "minify:js": "find public/js -name '*.js' -exec uglifyjs {} --compress --output {} \\;",
+    "test": "npm run lint && DEBUG=contribs:* tape 'scripts/**/*.test.js'",
+    "lint": "standard",
+    "watch": "npm-run-all -p watch:*",
+    "watch:css": "stylus -u autoprefixer-stylus -I node_modules/yeticss/lib -w _styl/main.styl -c -o static/css",
+    "watch:js": "watchify js/main.js -o static/js/bundle.js -v",
+    "watch:server": "hugo server -ws ."
+  },
+  "keywords": [],
+  "author": "Protocol Labs",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.5.0",
+    "debug": "^2.6.8",
+    "json2yaml": "^1.1.0",
+    "mime-types": "^2.1.16",
+    "mkdirp": "^0.5.1",
+    "request": "^2.81.0",
+    "sharp": "^0.18.2"
+  },
+  "devDependencies": {
+    "dnslink-deploy": "^1.0.7",
+    "ecstatic": "^2.2.1",
+    "faker": "^4.1.0",
+    "image-size": "^0.6.1",
+    "less": "^2.7.2",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "npm-run-all": "^4.0.2",
+    "standard": "^10.0.2",
+    "tape": "^4.7.0",
+    "uglify-js": "^3.0.18",
+    "watchify": "^3.9.0"
+  }
+}

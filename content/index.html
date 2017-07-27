@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>contribs</title>
+</head>
+<body>
+  <ul>
+    {{ range (where (where .Site.Pages "Section" "projects") "Kind" "page") }}
+      <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+</body>
+</html>

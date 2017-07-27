@@ -1,0 +1,9 @@
+relativeURLs = true
+googleAnalytics = ""
+
+[params]
+  title = "Contributor iframe pages for Protocol Labs projects"
+
+[outputs]
+  home = ["HTML"]
+  projects = ["HTML"]

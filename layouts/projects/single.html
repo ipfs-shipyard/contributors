@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <title>{{ $.Param "title" }}</title>
+</head>
+<body>
+  {{ range (index .Site.Data.projects (substr $.File.LogicalName 0 -3)) }}
+    <li>{{ .name }}</li>
+  {{ end }}
+</body>
+</html>
