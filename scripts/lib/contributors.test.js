@@ -43,7 +43,7 @@ test('should write data file', withTmpDir((t, tmpDir) => {
   const name = Faker.internet.userName()
   const username = Faker.internet.userName()
   const contributors = [{ username, photo: Faker.image.imageUrl() }]
-  const photos = { big: [`images/${name}/${username}@500.png`], small: [`images/${name}/${username}@250.png`] }
+  const photos = { big: [`/images/${name}/${username}@500.png`], small: [`/images/${name}/${username}@250.png`] }
   const config = { photoSizeBig: 500, photoSizeSmall: 250 }
 
   writeDataFile(tmpDir, name, contributors, photos, config, (err) => {

@@ -4,8 +4,9 @@
   <title>{{ $.Param "title" }}</title>
 </head>
 <body>
-  {{ range (index .Site.Data.projects (substr $.File.LogicalName 0 -3)) }}
-    <li>{{ .name }}</li>
+  {{ $projectData := (index .Site.Data.projects (substr $.File.LogicalName 0 -3)) }}
+  {{ range $projectData.contributors }}
+    <li>{{ .username }} <img src="/{{ .photo.small }}" /></li>
   {{ end }}
 </body>
 </html>

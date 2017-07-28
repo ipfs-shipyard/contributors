@@ -40,8 +40,8 @@ function writeDataFile (destDir, name, contributors, photos, config, cb) {
   const data = {
     config,
     contributors: contributors.map((c, i) => {
-      const big = photos.big[i] ? `images/${name}/${Path.basename(photos.big[i])}` : c.photo
-      const small = photos.small[i] ? `images/${name}/${Path.basename(photos.small[i])}` : c.photo
+      const big = photos.big[i] ? `/images/${name}/${Path.basename(photos.big[i])}` : c.photo
+      const small = photos.small[i] ? `/images/${name}/${Path.basename(photos.small[i])}` : c.photo
       return Object.assign({}, c, { photo: { big, small } })
     })
   }
