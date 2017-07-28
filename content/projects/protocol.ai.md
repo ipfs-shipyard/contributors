@@ -1,3 +1,3 @@
 ---
-title: Protocol Labs contributors
+title: protocol.ai
 ---

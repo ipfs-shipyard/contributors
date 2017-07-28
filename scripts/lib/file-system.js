@@ -25,13 +25,8 @@ function moveFiles (srcs, dir, opts, cb) {
     Async.mapLimit(srcs, opts.concurrency || 5, (src, cb) => {
       const dest = Path.join(dir, Path.basename(src))
       debug(`Moving ${src} to ${dest}`)
-
-      Fs.createReadStream(src)
-        .on('error', cb)
-        .pipe(Fs.createWriteStream(dest))
-        .on('error', cb)
-        .on('close', () => cb(null, dest))
-    })
+      Fs.rename(src, dest, cb)
+    }, cb)
   })
 }
 

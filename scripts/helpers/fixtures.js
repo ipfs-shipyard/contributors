@@ -16,8 +16,8 @@ function randomImage () {
 
 module.exports.randomImage = randomImage
 
-function createImageServer (cb) {
-  const root = Path.resolve(__dirname, '..', 'fixtures', 'images')
+function createFixturesServer (folder, cb) {
+  const root = Path.resolve(__dirname, '..', 'fixtures', folder)
   const server = Http.createServer(ecstatic({ root }))
 
   server.listen((err) => {
@@ -26,14 +26,24 @@ function createImageServer (cb) {
   })
 }
 
-function withImageServer (fn) {
+function withFixturesServer (folder, fn) {
   return function () {
     const args = Array.from(arguments)
-    createImageServer((err, server) => {
+    createFixturesServer(folder, (err, server) => {
       if (err) throw err
       fn.apply(this, args.concat(server))
     })
   }
 }
 
+function withImageServer (fn) {
+  return withFixturesServer('images', fn)
+}
+
 module.exports.withImageServer = withImageServer
+
+function withContributorsServer (fn) {
+  return withFixturesServer('contributors', fn)
+}
+
+module.exports.withContributorsServer = withContributorsServer

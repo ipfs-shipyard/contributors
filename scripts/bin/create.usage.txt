@@ -1,0 +1,11 @@
+Create a page that can be embedded on a website that lists project contributors.
+
+Usage: create "project-name" [options...]
+
+Options:
+  -t, --title       Page title
+  -o, --org         Github org to get contributors for [all]
+  -s, --size        Photo size [240]
+  -b, --background  Background color behind photos with transparency
+  -e, --endpoint    Contributors API URL [https://contributors.cloud.ipfs.team/contributors]
+  -c, --cwd         Working directory

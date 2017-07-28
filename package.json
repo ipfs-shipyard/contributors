@@ -15,7 +15,7 @@
     "minify": "npm-run-all minify:*",
     "minify:img": "find public/images -type d -exec imagemin {}/* --out-dir={} \\; && find public/blog/static -type d -exec imagemin {}/* --out-dir={} \\;",
     "minify:js": "find public/js -name '*.js' -exec uglifyjs {} --compress --output {} \\;",
-    "test": "npm run lint && DEBUG=contribs:* tape 'scripts/**/*.test.js'",
+    "test": "npm run lint && tape 'scripts/**/*.test.js'",
     "lint": "standard",
     "watch": "npm-run-all -p watch:*",
     "watch:css": "stylus -u autoprefixer-stylus -I node_modules/yeticss/lib -w _styl/main.styl -c -o static/css",
@@ -28,11 +28,12 @@
   "dependencies": {
     "async": "^2.5.0",
     "debug": "^2.6.8",
-    "json2yaml": "^1.1.0",
     "mime-types": "^2.1.16",
+    "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "request": "^2.81.0",
-    "sharp": "^0.18.2"
+    "sharp": "^0.18.2",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "dnslink-deploy": "^1.0.7",

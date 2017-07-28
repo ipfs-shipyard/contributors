@@ -1,9 +1,8 @@
 const Path = require('path')
-const YAML = require('json2yaml')
 const Async = require('async')
 const debug = require('debug')('contribs:create')
-const { fetchContributors } = require('./lib/contributors-api')
-const { writeUTF8File } = require('./lib/file-system')
+const { fetchContributors, writeDataFile, writeContentFile } = require('./lib/contributors')
+const { moveFiles } = require('./lib/file-system')
 const { downloadPhotos } = require('./lib/photo-transfer')
 const { resizePhotos } = require('./lib/photo-manipulate')
 
@@ -22,6 +21,8 @@ function create (name, opts, cb) {
   opts.cwd = opts.cwd || process.cwd()
   // Contributors API fetch options
   opts.fetchContributors = opts.fetchContributors || fetchContributors
+  opts.contributorsOrg = opts.contributorsOrg || 'all'
+  opts.contributorsEndpoint = opts.contributorsEndpoint || 'https://contributors.cloud.ipfs.team/contributors'
   // Downloading options
   opts.downloadPhotos = opts.downloadPhotos || downloadPhotos
   opts.photoDownloadConcurrency = opts.photoDownloadConcurrency || 5
@@ -37,37 +38,58 @@ function create (name, opts, cb) {
 
   Async.auto({
     contributors: (cb) => {
-      opts.fetchContributors(cb)
+      opts.fetchContributors({
+        endpoint: opts.contributorsEndpoint,
+        org: opts.contributorsOrg
+      }, cb)
     },
-    contentFile: (cb) => {
-      const path = Path.join(opts.cwd, 'content', 'projects', `${name}.md`)
-      writeUTF8File(path, YAML.stringify({ title: opts.title }) + '---\n', cb)
-    },
-    dataFile: ['contributors', (results, cb) => {
-      const path = Path.join(opts.cwd, 'data', 'projects', `${name}.json`)
-      writeUTF8File(path, JSON.stringify(results.contributors, null, 2), cb)
-    }],
+
     originalPhotos: ['contributors', (results, cb) => {
       opts.downloadPhotos(results.contributors, {
         concurrency: opts.photoDownloadConcurrency,
         ignoreRequestErrors: opts.ignorePhotoRequestErrors
       }, cb)
     }],
+
     bigPhotos: ['originalPhotos', (results, cb) => {
       opts.resizePhotos(results.originalPhotos, opts.photoSizeBig, {
         concurrency: opts.photoResizeConcurrency,
         backgroundColor: opts.photoBackgroundColor
       }, cb)
     }],
+
     smallPhotos: ['originalPhotos', (results, cb) => {
       opts.resizePhotos(results.originalPhotos, opts.photoSizeSmall, {
         concurrency: opts.photoResizeConcurrency,
         backgroundColor: opts.photoBackgroundColor
       }, cb)
-    }]
+    }],
+
+    movedPhotos: ['bigPhotos', 'smallPhotos', (results, cb) => {
+      const srcs = results.bigPhotos.concat(results.smallPhotos).filter(Boolean)
+      const dest = Path.join(opts.cwd, 'static', 'images', name)
+      moveFiles(srcs, dest, { concurrency: opts.photoMoveConcurrency }, cb)
+    }],
+
+    dataFile: ['contributors', 'bigPhotos', 'smallPhotos', (results, cb) => {
+      const { contributors, bigPhotos, smallPhotos } = results
+      const dest = Path.join(opts.cwd, 'data', 'projects')
+      const photos = { big: bigPhotos, small: smallPhotos }
+      const config = {
+        contributorsEndpoint: opts.contributorsEndpoint,
+        contributorsOrg: opts.contributorsOrg,
+        photoSizeBig: opts.photoSizeBig,
+        photoSizeSmall: opts.photoSizeSmall,
+        photoBackgroundColor: opts.photoBackgroundColor
+      }
+      writeDataFile(dest, name, contributors, photos, config, cb)
+    }],
+
+    contentFile: (cb) => {
+      const dest = Path.join(opts.cwd, 'content', 'projects')
+      writeContentFile(dest, name, { title: opts.title }, cb)
+    }
   }, cb)
 }
 
-if (module.parent) {
-  module.exports = create
-}
+module.exports = create
