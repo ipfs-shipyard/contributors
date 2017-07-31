@@ -4,42 +4,46 @@ const sharp = require('sharp')
 const debug = require('debug')('contribs:photo-manipulate')
 
 // Resize multiple photos. Resized photos are written to the same dir as the
-// originals, e.g. original.jpg, original@120.jpg, original@60.jpg
+// originals, e.g. original.jpg, original@120x144.jpg, original@60x72.jpg
 //
 // srcs - array of image file paths
-// size - desired width/height of the photos
+// width - desired width of the photos
+// height - desired height of the photos
 // opts.concurrency - number of images that should be processed concurrently
 // opts.backgroundColor - color to place under each image
 // cb(err, ['/path/to/photo.jpg'])
-function resizePhotos (srcs, size, opts, cb) {
+function resizePhotos (srcs, width, height, opts, cb) {
   debug(`Resizing ${srcs.length} photos`)
 
   Async.mapLimit(srcs, opts.concurrency || 5, (src, cb) => {
     if (!src) return cb() // src may be null if photo failed to download
-    resizePhoto(src, size || 240, { backgroundColor: opts.backgroundColor }, cb)
+    resizePhoto(src, width || 240, height || 288, {
+      backgroundColor: opts.backgroundColor
+    }, cb)
   }, cb)
 }
 
 module.exports.resizePhotos = resizePhotos
 
 // Resize a single photo. Resized photos are written to the same dir as the
-// originals, e.g. original.jpg, original@120.jpg
+// originals, e.g. original.jpg, original@120x144.jpg, original@60x72.jpg
 //
 // src - image file path
-// size - desired width/height of the photo
+// width - desired width of the photo
+// height - desired height of the photos
 // opts.backgroundColor - color to place under image
 // cb(err, '/path/to/resized.jpg')
-function resizePhoto (src, size, opts, cb) {
-  debug(`Resizing ${src} to ${size}x${size}`)
+function resizePhoto (src, width, height, opts, cb) {
+  debug(`Resizing ${src} to ${width}x${height}`)
 
-  let image = sharp(src).resize(size, size)
+  let image = sharp(src).resize(width, height)
 
   if (opts.backgroundColor) {
     image = image.background(opts.backgroundColor).embed()
   }
 
   const { dir, name, ext } = Path.parse(src)
-  const dest = Path.join(dir, `${name}@${size}${ext}`)
+  const dest = Path.join(dir, `${name}@${width}x${height}${ext}`)
 
   image.toFile(dest).then(() => cb(null, dest)).catch(cb)
 }

@@ -44,7 +44,7 @@ test('should write data file', withTmpDir((t, tmpDir) => {
   const username = Faker.internet.userName()
   const contributors = [{ username, photo: Faker.image.imageUrl() }]
   const photos = { big: [`/images/${name}/${username}@500.png`], small: [`/images/${name}/${username}@250.png`] }
-  const config = { photoSizeBig: 500, photoSizeSmall: 250 }
+  const config = { photoWidthBig: 500, photoWidthSmall: 250 }
 
   writeDataFile(tmpDir, name, contributors, photos, config, (err) => {
     t.ifError(err, 'no error updating file')
@@ -60,8 +60,8 @@ test('should write data file', withTmpDir((t, tmpDir) => {
     t.equal(dataFileContributor.photo.big, photos.big[0], 'big photo correct')
     t.equal(dataFileContributor.photo.small, photos.small[0], 'small photo correct')
 
-    t.equal(dataFileContent.config.photoSizeBig, config.photoSizeBig, 'big photo size in file')
-    t.equal(dataFileContent.config.photoSizeSmall, config.photoSizeSmall, 'small photo size in file')
+    t.equal(dataFileContent.config.photoWidthBig, config.photoWidthBig, 'big photo size in file')
+    t.equal(dataFileContent.config.photoWidthSmall, config.photoWidthSmall, 'small photo size in file')
 
     t.end()
   })

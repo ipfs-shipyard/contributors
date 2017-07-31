@@ -15,14 +15,15 @@ test('should resize a photo to the given size', withTmpDir((t, tmpDir) => {
 
   Fs.writeFileSync(dest, Fs.readFileSync(src))
 
-  const size = Faker.random.number({ min: 20, max: 120 })
+  const width = Faker.random.number({ min: 20, max: 120 })
+  const height = Faker.random.number({ min: 20, max: 120 })
 
-  resizePhoto(dest, size, {}, (err, resizedPath) => {
+  resizePhoto(dest, width, height, {}, (err, resizedPath) => {
     t.ifError(err, 'no error resizing photo')
 
-    const { width, height } = sizeOf(resizedPath)
-    t.equal(width, size, `${Path.basename(resizedPath)} width is correct`)
-    t.equal(height, size, `${Path.basename(resizedPath)} is correct`)
+    const dims = sizeOf(resizedPath)
+    t.equal(dims.width, width, `${Path.basename(resizedPath)} width is correct`)
+    t.equal(dims.height, height, `${Path.basename(resizedPath)} height is correct`)
 
     t.end()
   })
@@ -41,17 +42,19 @@ test('should resize multiple photos to the given size', withTmpDir((t, tmpDir) =
   }
 
   const srcs = Array(totalImages).fill(0).map(createPhotoSrc)
-  const size = Faker.random.number({ min: 20, max: 120 })
 
-  resizePhotos(srcs, size, {}, (err, dests) => {
+  const width = Faker.random.number({ min: 20, max: 120 })
+  const height = Faker.random.number({ min: 20, max: 120 })
+
+  resizePhotos(srcs, width, height, {}, (err, dests) => {
     t.ifError(err, 'no error resizing photos')
 
     t.equal(srcs.length, dests.length, 'correct number of resized file paths')
 
     dests.forEach((dest) => {
-      const { width, height } = sizeOf(dest)
-      t.equal(width, size, `${Path.basename(dest)} width is correct`)
-      t.equal(height, size, `${Path.basename(dest)} is correct`)
+      const dims = sizeOf(dest)
+      t.equal(dims.width, width, `${Path.basename(dest)} width is correct`)
+      t.equal(dims.height, height, `${Path.basename(dest)} height is correct`)
     })
 
     t.end()

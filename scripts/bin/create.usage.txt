@@ -5,7 +5,8 @@ Usage: create "project-name" [options...]
 Options:
   -t, --title       Page title
   -o, --org         Github org to get contributors for [all]
-  -s, --size        Photo size [240]
+  -w, --width       Photo width (at 1x) [240]
   -b, --background  Background color behind photos with transparency
+  -r, --breakpoint  Width at which large photos are displayed
   -e, --endpoint    Contributors API URL [https://contributors.cloud.ipfs.team/contributors]
   -c, --cwd         Working directory

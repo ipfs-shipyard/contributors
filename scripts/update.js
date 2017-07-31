@@ -36,6 +36,9 @@ function update (name, opts, cb) {
 
       opts = opts || {}
       opts.cwd = opts.cwd || process.cwd()
+      // Page style
+      opts.rows = opts.rows || data.config.rows || 5
+      opts.breakpoint = opts.breakpoint || data.config.breakpoint || '570px'
       // Contributors API fetch options
       opts.fetchContributors = opts.fetchContributors || fetchContributors
       opts.contributorsOrg = opts.contributorsOrg || data.config.contributorsOrg || 'all'
@@ -47,8 +50,10 @@ function update (name, opts, cb) {
       // Resizing options
       opts.resizePhotos = opts.resizePhotos || resizePhotos
       opts.photoResizeConcurrency = opts.photoResizeConcurrency || 5
-      opts.photoSizeBig = opts.photoSizeBig || data.config.photoSizeBig || 240
-      opts.photoSizeSmall = opts.photoSizeSmall || data.config.photoSizeSmall || Math.round(opts.photoSizeBig * 0.5)
+      opts.photoWidthBig = opts.photoWidthBig || data.config.photoWidthBig || 240
+      opts.photoHeightBig = opts.photoHeightBig || data.config.photoHeightBig || Math.round((opts.photoWidthBig / 5) * 6)
+      opts.photoWidthSmall = opts.photoWidthSmall || data.config.photoWidthSmall || Math.round(opts.photoWidthBig * 0.5)
+      opts.photoHeightSmall = opts.photoHeightSmall || data.config.photoHeightSmall || Math.round((opts.photoWidthSmall / 5) * 6)
       opts.photoBackgroundColor = opts.photoBackgroundColor || data.config.photoBackgroundColor || null
       // Move options
       opts.photoMoveConcurrency = opts.photoMoveConcurrency || 5
@@ -69,14 +74,14 @@ function update (name, opts, cb) {
         }],
 
         bigPhotos: ['originalPhotos', (results, cb) => {
-          opts.resizePhotos(results.originalPhotos, opts.photoSizeBig, {
+          opts.resizePhotos(results.originalPhotos, opts.photoWidthBig, opts.photoHeightSmall, {
             concurrency: opts.photoResizeConcurrency,
             backgroundColor: opts.photoBackgroundColor
           }, cb)
         }],
 
         smallPhotos: ['originalPhotos', (results, cb) => {
-          opts.resizePhotos(results.originalPhotos, opts.photoSizeSmall, {
+          opts.resizePhotos(results.originalPhotos, opts.photoWidthSmall, opts.photoHeightSmall, {
             concurrency: opts.photoResizeConcurrency,
             backgroundColor: opts.photoBackgroundColor
           }, cb)
@@ -95,9 +100,13 @@ function update (name, opts, cb) {
           const config = {
             contributorsEndpoint: opts.contributorsEndpoint,
             contributorsOrg: opts.contributorsOrg,
-            photoSizeBig: opts.photoSizeBig,
-            photoSizeSmall: opts.photoSizeSmall,
-            photoBackgroundColor: opts.photoBackgroundColor
+            photoWidthBig: opts.photoWidthBig,
+            photoHeightBig: opts.photoHeightBig,
+            photoWidthSmall: opts.photoWidthSmall,
+            photoHeightSmall: opts.photoHeightSmall,
+            photoBackgroundColor: opts.photoBackgroundColor,
+            rows: opts.rows,
+            breakpoint: opts.breakpoint
           }
           writeDataFile(dest, name, contributors, photos, config, cb)
         }]

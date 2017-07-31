@@ -1,12 +1,49 @@
+{{ $data := (index .Site.Data.projects (substr $.File.LogicalName 0 -3)) }}
 <!doctype html>
 <html lang="en-US">
 <head>
   <title>{{ $.Param "title" }}</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <style>
+    #contributors .hex {
+      width: {{ div $data.config.photoWidthSmall 2 }}px;
+      height: {{ div $data.config.photoHeightSmall 2 }}px;
+    }
+    @media (min-width: {{ $data.config.breakpoint }}) {
+      #contributors .hex {
+        width: {{ div $data.config.photoWidthBig 2 }}px;
+        height: {{ div $data.config.photoHeightBig 2 }}px;
+      }
+    }
+  </style>
 </head>
 <body>
-  {{ $projectData := (index .Site.Data.projects (substr $.File.LogicalName 0 -3)) }}
-  {{ range $projectData.contributors }}
-    <li>{{ .username }} <img src="{{ .photo.small }}" /></li>
-  {{ end }}
+  <div id="contributors">
+    <div class="slide">
+      {{ range (seq $data.config.rows) }}
+        <div class="row"></div>
+      {{ end }}
+    </div>
+    <div class="holding-pen">
+      {{ range $data.contributors }}
+        <a href="https://github.com/{{ .username }}" target="_blank" title="{{ .username }}" class="hex">
+          <img
+            src="{{ .photo.big }}"
+            srcset="
+              {{ .photo.big }} {{ $data.config.photoWidthBig }}w,
+              {{ .photo.small }} {{ $data.config.photoWidthSmall }}w
+            "
+            sizes="
+              (min-width: {{ $data.config.breakpoint }}) {{ div $data.config.photoWidthBig 2 }}px,
+              {{ div $data.config.photoWidthSmall 2 }}px
+            " />
+        </a>
+      {{ end }}
+    </div>
+  </div>
+  <script src="/js/script.js"></script>
+  <script>
+    window.initContributorsSlider(document.getElementById('contributors'))
+  </script>
 </body>
 </html>

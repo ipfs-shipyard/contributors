@@ -17,8 +17,11 @@ function create (name, opts, cb) {
   debug(`Creating new project "${name}"`)
 
   opts = opts || {}
-  opts.title = opts.title || name
   opts.cwd = opts.cwd || process.cwd()
+  // Page style
+  opts.title = opts.title || name
+  opts.rows = opts.rows || 5
+  opts.breakpoint = opts.breakpoint || '570px'
   // Contributors API fetch options
   opts.fetchContributors = opts.fetchContributors || fetchContributors
   opts.contributorsOrg = opts.contributorsOrg || 'all'
@@ -30,8 +33,10 @@ function create (name, opts, cb) {
   // Resizing options
   opts.resizePhotos = opts.resizePhotos || resizePhotos
   opts.photoResizeConcurrency = opts.photoResizeConcurrency || 5
-  opts.photoSizeBig = opts.photoSizeBig || 240
-  opts.photoSizeSmall = opts.photoSizeSmall || Math.round(opts.photoSizeBig * 0.5)
+  opts.photoWidthBig = opts.photoWidthBig || 240
+  opts.photoHeightBig = opts.photoHeightBig || Math.round((opts.photoWidthBig / 5) * 6)
+  opts.photoWidthSmall = opts.photoWidthSmall || Math.round(opts.photoWidthBig * 0.5)
+  opts.photoHeightSmall = opts.photoHeightSmall || Math.round((opts.photoWidthSmall / 5) * 6)
   opts.photoBackgroundColor = opts.photoBackgroundColor || null
   // Move options
   opts.photoMoveConcurrency = opts.photoMoveConcurrency || 5
@@ -52,16 +57,18 @@ function create (name, opts, cb) {
     }],
 
     bigPhotos: ['originalPhotos', (results, cb) => {
-      opts.resizePhotos(results.originalPhotos, opts.photoSizeBig, {
+      opts.resizePhotos(results.originalPhotos, opts.photoWidthBig, opts.photoHeightBig, {
         concurrency: opts.photoResizeConcurrency,
-        backgroundColor: opts.photoBackgroundColor
+        backgroundColor: opts.photoBackgroundColor,
+        ratio: opts.photoResizeRatio
       }, cb)
     }],
 
     smallPhotos: ['originalPhotos', (results, cb) => {
-      opts.resizePhotos(results.originalPhotos, opts.photoSizeSmall, {
+      opts.resizePhotos(results.originalPhotos, opts.photoWidthSmall, opts.photoHeightSmall, {
         concurrency: opts.photoResizeConcurrency,
-        backgroundColor: opts.photoBackgroundColor
+        backgroundColor: opts.photoBackgroundColor,
+        ratio: opts.photoResizeRatio
       }, cb)
     }],
 
@@ -78,9 +85,13 @@ function create (name, opts, cb) {
       const config = {
         contributorsEndpoint: opts.contributorsEndpoint,
         contributorsOrg: opts.contributorsOrg,
-        photoSizeBig: opts.photoSizeBig,
-        photoSizeSmall: opts.photoSizeSmall,
-        photoBackgroundColor: opts.photoBackgroundColor
+        photoWidthBig: opts.photoWidthBig,
+        photoHeightBig: opts.photoHeightBig,
+        photoWidthSmall: opts.photoWidthSmall,
+        photoHeightSmall: opts.photoHeightSmall,
+        photoBackgroundColor: opts.photoBackgroundColor,
+        rows: opts.rows,
+        breakpoint: opts.breakpoint
       }
       writeDataFile(dest, name, contributors, photos, config, cb)
     }],

@@ -25,12 +25,16 @@ if (argv.org || argv.o) {
   opts.contributorsOrg = argv.org || argv.o
 }
 
-if (argv.size || argv.s) {
-  opts.photoSizeBig = argv.size || argv.s
+if (argv.width || argv.w) {
+  opts.photoWidthBig = argv.width || argv.w
 }
 
 if (argv.background || argv.b) {
   opts.backgroundColor = argv.background || argv.b
+}
+
+if (argv.breakpoint || argv.r) {
+  opts.breakpoint = argv.breakpoint || argv.r
 }
 
 if (argv.endpoint || argv.e) {
