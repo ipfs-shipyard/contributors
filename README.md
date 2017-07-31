@@ -4,8 +4,8 @@ Create a page that can be embedded on a website that lists project contributors.
 
 ## Dependencies
 
-* Node.js > 6
-
+* [Node.js](https://nodejs.org/) >= 6
+* [Hugo](https://gohugo.io/)
 
 ## Create a new project page
 
