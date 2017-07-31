@@ -7,7 +7,7 @@ const { downloadPhotos } = require('./lib/photo-transfer')
 const { resizePhotos } = require('./lib/photo-manipulate')
 
 function create (name, opts, cb) {
-  if (!name) return cb(new Error('Project name is required'))
+  if (!name) return process.nextTick(() => cb(new Error('Project name is required')))
 
   if (typeof opts === 'function') {
     cb = opts

@@ -2,38 +2,11 @@ const test = require('tape')
 const Fs = require('fs')
 const Path = require('path')
 const { F_OK, R_OK } = Fs.constants
-const Async = require('async')
 const Faker = require('faker')
 const Yaml = require('yamljs')
 const create = require('./create')
-const { mkTmpDir, withTmpDir } = require('./helpers/tmpdir')
-const { fakeContributors } = require('./helpers/fakes')
-const { randomImage } = require('./helpers/fixtures')
-
-// Creates a function to mock fetching the contributors list from the API
-function mockFetchContributors (contributors) {
-  return (opts, cb) => process.nextTick(() => cb(null, contributors || fakeContributors()))
-}
-
-// Creates a function to mock downloading photos (images from the fixtures directory)
-function mockDownloadPhotos () {
-  return (contributors, opts, cb) => {
-    mkTmpDir((err, dir) => {
-      if (err) return cb(err)
-
-      Async.map(contributors, (c, cb) => {
-        const src = randomImage()
-        const dest = Path.join(dir, `${c.username}${Path.extname(src)}`)
-
-        Fs.createReadStream(src)
-          .on('error', cb)
-          .pipe(Fs.createWriteStream(dest))
-          .on('error', cb)
-          .on('close', () => cb(null, dest))
-      }, cb)
-    })
-  }
-}
+const { withTmpDir } = require('./helpers/tmpdir')
+const { mockFetchContributors, mockDownloadPhotos } = require('./helpers/mocks')
 
 test('should require project name', withTmpDir((t, tmpDir) => {
   t.plan(2)

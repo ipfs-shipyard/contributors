@@ -1,0 +1,6 @@
+Delete an existing project.
+
+Usage: delete "project-name" [options...]
+
+Options:
+  -c, --cwd         Working directory
