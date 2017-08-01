@@ -21,8 +21,7 @@ html, body {
 }
 #contributors .slide {
   transform: translate3d(0,0,0); /* hint to prefer gpu rending. */
-  animation: slide 60s ease-in-out both 0s infinite alternate;
-  animation-play-state: paused;
+  animation: slide 60s linear both 0s infinite alternate paused;
 }
 #contributors .slide.running {
   animation-play-state: running;

@@ -54,7 +54,7 @@ function writeDataFile (cwd, name, contributors, photos, config, cb) {
     })
   }
 
-  writeUTF8File(dest, JSON.stringify(data, null, 2), cb)
+  writeUTF8File(dest, JSON.stringify(data, null, 2) + '\n', cb)
 }
 
 module.exports.writeDataFile = writeDataFile

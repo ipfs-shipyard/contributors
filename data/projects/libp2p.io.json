@@ -11,8 +11,8 @@
     "breakpoint": 570,
     "spacingBig": 0,
     "spacingSmall": 0,
-    "animationDuration": 60,
-    "animationTimingFunction": "ease-in-out"
+    "animationDuration": 30,
+    "animationTimingFunction": "linear"
   },
   "contributors": [
     {

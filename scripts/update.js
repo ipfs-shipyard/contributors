@@ -27,12 +27,12 @@ function update (name, opts, cb) {
       if (err) return cb(err)
 
       // Page style
-      opts.rows = opts.rows || data.config.rows || 5
+      opts.rows = opts.rows || data.config.rows || 4
       opts.breakpoint = opts.breakpoint || data.config.breakpoint || 570
       opts.spacingBig = opts.spacingBig || data.config.spacingBig || 0
       opts.spacingSmall = opts.spacingSmall || data.config.spacingSmall || Math.round(opts.spacingBig / 2)
       opts.animationDuration = opts.animationDuration || data.config.animationDuration || 60
-      opts.animationTimingFunction = opts.animationTimingFunction || data.config.animationTimingFunction || 'ease-in-out'
+      opts.animationTimingFunction = opts.animationTimingFunction || data.config.animationTimingFunction || 'linear'
       // Contributors API fetch options
       opts.fetchContributors = opts.fetchContributors || fetchContributors
       opts.contributorsOrg = opts.contributorsOrg || data.config.contributorsOrg || 'all'

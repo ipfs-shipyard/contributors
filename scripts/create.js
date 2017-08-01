@@ -24,12 +24,12 @@ function create (name, opts, cb) {
 
     // Page style
     opts.title = opts.title || name
-    opts.rows = opts.rows || 5
+    opts.rows = opts.rows || 4
     opts.breakpoint = opts.breakpoint || 570
     opts.spacingBig = opts.spacingBig || 0
     opts.spacingSmall = opts.spacingSmall || Math.round(opts.spacingBig / 2)
     opts.animationDuration = opts.animationDuration || 60
-    opts.animationTimingFunction = opts.animationTimingFunction || 'ease-in-out'
+    opts.animationTimingFunction = opts.animationTimingFunction || 'linear'
     // Contributors API fetch options
     opts.fetchContributors = opts.fetchContributors || fetchContributors
     opts.contributorsOrg = opts.contributorsOrg || 'all'
