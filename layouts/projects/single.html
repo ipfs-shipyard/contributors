@@ -39,7 +39,7 @@
               {{ .photo.small }} {{ $data.config.photoWidthSmall }}w
             "
             sizes="
-              (min-width: {{ $data.config.breakpoint }}) {{ div $data.config.photoWidthBig 2 }}px,
+              (min-width: {{ $data.config.breakpoint }}px) {{ div $data.config.photoWidthBig 2 }}px,
               {{ div $data.config.photoWidthSmall 2 }}px
             " />
         </a>
