@@ -12,12 +12,8 @@
     return a
   }
 
-  function initContributorsSlider (container) {
-    container.querySelector('.slide').className = 'slide running'
-
+  function tesselate (container) {
     var elements = container.querySelectorAll('.hex')
-    elements = shuffle([].slice.call(elements))
-
     var hexStyle = window.getComputedStyle(elements[0])
     var hexWidth = parseInt(hexStyle.width, 10)
     var hexHeight = parseInt(hexStyle.height, 10)
@@ -25,14 +21,28 @@
     var rows = container.querySelectorAll('.row')
     var rowWidth = Math.ceil(elements.length / rows.length) * hexWidth
 
+    var hoverPaddingTop = (hexHeight * 0.2) / 2
+
     ;[].forEach.call(rows, function (row, i) {
       row.style.height = hexHeight + 'px'
       row.style.width = rowWidth + 'px'
-      row.style.top = i * hexHeight * 0.75 + 'px'
+      row.style.top = (hoverPaddingTop + (i * hexHeight * 0.75)) + 'px'
       if ((i % 2) === 1) {
         row.style.left = hexWidth / 2 + 'px'
       }
     })
+  }
+
+  function initContributorsSlider (container) {
+    container.querySelector('.slide').className = 'slide running'
+
+    var elements = container.querySelectorAll('.hex')
+    elements = shuffle([].slice.call(elements))
+
+    tesselate(container)
+    window.addEventListener('resize', tesselate.bind(null, container))
+
+    var rows = container.querySelectorAll('.row')
 
     var nextRow = 0
     var lastRender = 0

@@ -30,7 +30,7 @@ if (argv.width || argv.w) {
 }
 
 if (argv.background || argv.b) {
-  opts.backgroundColor = argv.background || argv.b
+  opts.photoBackgroundColor = argv.background || argv.b
 }
 
 if (argv.breakpoint || argv.r) {

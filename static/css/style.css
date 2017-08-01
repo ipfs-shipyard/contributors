@@ -1,5 +1,6 @@
 html, body {
   margin: 0;
+  background: none transparent;
 }
 @keyframes slide {
     0% { transform: translate3d(0,0,0); }
@@ -12,7 +13,6 @@ html, body {
 }
 #contributors .row {
   position: absolute;
-  height: 72px;
   overflow: visible;
 }
 #contributors .row:hover {
@@ -31,8 +31,6 @@ html, body {
 }
 #contributors .hex {
   display: inline-block;
-  width: 60px;
-  height: 72px;
   opacity: 0;
   transition: opacity 300ms ease-in, transform 100ms ease-out;
   -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);

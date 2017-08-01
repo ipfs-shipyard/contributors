@@ -18,6 +18,9 @@ function update (name, opts, cb) {
 
   debug(`Updating project "${name}"`)
 
+  opts = opts || {}
+  opts.cwd = opts.cwd || process.cwd()
+
   const contentFilePath = Path.join(opts.cwd, 'content', 'projects', `${name}.md`)
   const dataFilePath = Path.join(opts.cwd, 'data', 'projects', `${name}.json`)
 
@@ -34,8 +37,6 @@ function update (name, opts, cb) {
         return cb(err)
       }
 
-      opts = opts || {}
-      opts.cwd = opts.cwd || process.cwd()
       // Page style
       opts.rows = opts.rows || data.config.rows || 5
       opts.breakpoint = opts.breakpoint || data.config.breakpoint || '570px'
@@ -74,7 +75,7 @@ function update (name, opts, cb) {
         }],
 
         bigPhotos: ['originalPhotos', (results, cb) => {
-          opts.resizePhotos(results.originalPhotos, opts.photoWidthBig, opts.photoHeightSmall, {
+          opts.resizePhotos(results.originalPhotos, opts.photoWidthBig, opts.photoHeightBig, {
             concurrency: opts.photoResizeConcurrency,
             backgroundColor: opts.photoBackgroundColor
           }, cb)

@@ -6,7 +6,7 @@
     "photoHeightBig": 288,
     "photoWidthSmall": 120,
     "photoHeightSmall": 144,
-    "photoBackgroundColor": null,
+    "photoBackgroundColor": "black",
     "rows": 5,
     "breakpoint": "570px"
   },

@@ -37,3 +37,32 @@ Add a DEBUG environment variable to see some logs.
 ```sh
 DEBUG=contribs:* node scripts/bin/update my-project-name
 ```
+
+## Embedding a page
+
+```html
+<!doctype html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      background: red;
+    }
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 312px;
+    }
+    @media (min-width: 570px) {
+      iframe {
+        height: 606px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <iframe src="http://localhost:1313/projects/protocol.ai/"></iframe>
+</body>
+</html>
+```

@@ -36,10 +36,10 @@ module.exports.resizePhotos = resizePhotos
 function resizePhoto (src, width, height, opts, cb) {
   debug(`Resizing ${src} to ${width}x${height}`)
 
-  let image = sharp(src).resize(width, height)
+  let image = sharp(src).resize(width, height).min().crop(sharp.strategy.center)
 
   if (opts.backgroundColor) {
-    image = image.background(opts.backgroundColor).embed()
+    image = image.background(opts.backgroundColor).flatten()
   }
 
   const { dir, name, ext } = Path.parse(src)

@@ -3,7 +3,7 @@
 const Fs = require('fs')
 const Path = require('path')
 const argv = require('minimist')(process.argv.slice(2))
-const update = require('../create')
+const update = require('../update')
 
 if (argv.usage || argv.help || argv.h) {
   console.log(Fs.readFileSync(Path.join(__dirname, 'update.usage.txt'), 'utf8'))
@@ -26,7 +26,7 @@ if (argv.width || argv.w) {
 }
 
 if (argv.background || argv.b) {
-  opts.backgroundColor = argv.background || argv.b
+  opts.photoBackgroundColor = argv.background || argv.b
 }
 
 if (argv.breakpoint || argv.r) {
