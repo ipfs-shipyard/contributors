@@ -4,7 +4,7 @@ html, body {
 }
 @keyframes slide {
     0% { transform: translate3d(0,0,0); }
-  100% { transform: translate3d(-100%,0,0); }
+  100% { transform: translate3d(calc(-100% + 100vw),0,0); }
 }
 #contributors {
   position: relative;
@@ -21,7 +21,7 @@ html, body {
 }
 #contributors .slide {
   transform: translate3d(0,0,0); /* hint to prefer gpu rending. */
-  animation: slide 60s ease-out both 0s infinite alternate;
+  animation: slide 60s ease-in-out both 0s infinite alternate;
   animation-play-state: paused;
 }
 #contributors .slide.running {

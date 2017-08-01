@@ -5,12 +5,15 @@
   <title>{{ $.Param "title" }}</title>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <style>
+    #contributors .slide {
+      animation: slide {{ $data.config.animationDuration }}s {{ $data.config.animationTimingFunction }} both 0s infinite alternate;
+    }
     #contributors .hex {
       width: {{ div $data.config.photoWidthSmall 2 }}px;
       height: {{ div $data.config.photoHeightSmall 2 }}px;
       margin: {{ $data.config.spacingSmall }}px;
     }
-    @media (min-width: {{ $data.config.breakpoint }}) {
+    @media (min-width: {{ $data.config.breakpoint }}px) {
       #contributors .hex {
         width: {{ div $data.config.photoWidthBig 2 }}px;
         height: {{ div $data.config.photoHeightBig 2 }}px;

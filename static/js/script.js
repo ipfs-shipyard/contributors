@@ -32,11 +32,14 @@
         row.style.left = hexWidth / 2 + 'px'
       }
     })
+
+    var slider = container.querySelector('.slide')
+    slider.style.width = rowWidth + 'px'
+    // No slide if content is < window width
+    slider.className = rowWidth < window.innerWidth ? 'slide' : 'slide running'
   }
 
   function initContributorsSlider (container) {
-    container.querySelector('.slide').className = 'slide running'
-
     var elements = container.querySelectorAll('.hex')
     elements = shuffle([].slice.call(elements))
 

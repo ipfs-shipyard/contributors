@@ -25,9 +25,11 @@ function create (name, opts, cb) {
     // Page style
     opts.title = opts.title || name
     opts.rows = opts.rows || 5
-    opts.breakpoint = opts.breakpoint || '570px'
+    opts.breakpoint = opts.breakpoint || 570
     opts.spacingBig = opts.spacingBig || 0
     opts.spacingSmall = opts.spacingSmall || Math.round(opts.spacingBig / 2)
+    opts.animationDuration = opts.animationDuration || 60
+    opts.animationTimingFunction = opts.animationTimingFunction || 'ease-in-out'
     // Contributors API fetch options
     opts.fetchContributors = opts.fetchContributors || fetchContributors
     opts.contributorsOrg = opts.contributorsOrg || 'all'
@@ -98,14 +100,16 @@ function create (name, opts, cb) {
           rows: opts.rows,
           breakpoint: opts.breakpoint,
           spacingBig: opts.spacingBig,
-          spacingSmall: opts.spacingSmall
+          spacingSmall: opts.spacingSmall,
+          animationDuration: opts.animationDuration,
+          animationTimingFunction: opts.animationTimingFunction
         }
         writeDataFile(opts.cwd, name, contributors, photos, config, cb)
       }],
 
-      contentFile: (cb) => {
+      contentFile: ['bigPhotos', 'smallPhotos', (results, cb) => {
         writeContentFile(opts.cwd, name, { title: opts.title }, cb)
-      }
+      }]
     }, cb)
   })
 }

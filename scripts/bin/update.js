@@ -33,8 +33,20 @@ if (argv.background || argv.b) {
   opts.photoBackgroundColor = argv.background || argv.b
 }
 
-if (argv.breakpoint || argv.r) {
-  opts.breakpoint = argv.breakpoint || argv.r
+if (argv.breakpoint || argv.k) {
+  opts.breakpoint = argv.breakpoint || argv.k
+}
+
+if (argv.rows || argv.r) {
+  opts.rows = argv.rows || argv.r
+}
+
+if (argv.duration || argv.d) {
+  opts.animationDuration = argv.duration || argv.d
+}
+
+if (argv.timing || argv.f) {
+  opts.animationTimingFunction = argv.timing || argv.f
 }
 
 if (argv.endpoint || argv.e) {

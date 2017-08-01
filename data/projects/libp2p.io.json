@@ -1,0 +1,619 @@
+{
+  "config": {
+    "contributorsEndpoint": "https://contributors.cloud.ipfs.team/contributors",
+    "contributorsOrg": "libp2p",
+    "photoWidthBig": 124,
+    "photoHeightBig": 149,
+    "photoWidthSmall": 62,
+    "photoHeightSmall": 74,
+    "photoBackgroundColor": "white",
+    "rows": 5,
+    "breakpoint": 570,
+    "spacingBig": 0,
+    "spacingSmall": 0,
+    "animationDuration": 60,
+    "animationTimingFunction": "ease-in-out"
+  },
+  "contributors": [
+    {
+      "url": "https://github.com/JGAntunes",
+      "photo": {
+        "big": "/images/libp2p.io/JGAntunes@124x149.png",
+        "small": "/images/libp2p.io/JGAntunes@62x74.png"
+      },
+      "username": "JGAntunes"
+    },
+    {
+      "url": "https://github.com/JesseWeinstein",
+      "photo": {
+        "big": "/images/libp2p.io/JesseWeinstein@124x149.jpeg",
+        "small": "/images/libp2p.io/JesseWeinstein@62x74.jpeg"
+      },
+      "username": "JesseWeinstein"
+    },
+    {
+      "url": "https://github.com/John-Steidley",
+      "photo": {
+        "big": "/images/libp2p.io/John-Steidley@124x149.jpeg",
+        "small": "/images/libp2p.io/John-Steidley@62x74.jpeg"
+      },
+      "username": "John-Steidley"
+    },
+    {
+      "url": "https://github.com/JustinDrake",
+      "photo": {
+        "big": "/images/libp2p.io/JustinDrake@124x149.jpeg",
+        "small": "/images/libp2p.io/JustinDrake@62x74.jpeg"
+      },
+      "username": "JustinDrake"
+    },
+    {
+      "url": "https://github.com/Kubuxu",
+      "photo": {
+        "big": "/images/libp2p.io/Kubuxu@124x149.jpeg",
+        "small": "/images/libp2p.io/Kubuxu@62x74.jpeg"
+      },
+      "username": "Kubuxu"
+    },
+    {
+      "url": "https://github.com/MichaelMure",
+      "photo": {
+        "big": "/images/libp2p.io/MichaelMure@124x149.jpeg",
+        "small": "/images/libp2p.io/MichaelMure@62x74.jpeg"
+      },
+      "username": "MichaelMure"
+    },
+    {
+      "url": "https://github.com/RichardLitt",
+      "photo": {
+        "big": "/images/libp2p.io/RichardLitt@124x149.jpeg",
+        "small": "/images/libp2p.io/RichardLitt@62x74.jpeg"
+      },
+      "username": "RichardLitt"
+    },
+    {
+      "url": "https://github.com/SidHarder",
+      "photo": {
+        "big": "/images/libp2p.io/SidHarder@124x149.gif",
+        "small": "/images/libp2p.io/SidHarder@62x74.gif"
+      },
+      "username": "SidHarder"
+    },
+    {
+      "url": "https://github.com/Stebalien",
+      "photo": {
+        "big": "/images/libp2p.io/Stebalien@124x149.png",
+        "small": "/images/libp2p.io/Stebalien@62x74.png"
+      },
+      "username": "Stebalien"
+    },
+    {
+      "url": "https://github.com/VictorBjelkholm",
+      "photo": {
+        "big": "/images/libp2p.io/VictorBjelkholm@124x149.jpeg",
+        "small": "/images/libp2p.io/VictorBjelkholm@62x74.jpeg"
+      },
+      "username": "VictorBjelkholm"
+    },
+    {
+      "url": "https://github.com/atfornes",
+      "photo": {
+        "big": "/images/libp2p.io/atfornes@124x149.jpeg",
+        "small": "/images/libp2p.io/atfornes@62x74.jpeg"
+      },
+      "username": "atfornes"
+    },
+    {
+      "url": "https://github.com/btc",
+      "photo": {
+        "big": "/images/libp2p.io/btc@124x149.png",
+        "small": "/images/libp2p.io/btc@62x74.png"
+      },
+      "username": "btc"
+    },
+    {
+      "url": "https://github.com/cleichner",
+      "photo": {
+        "big": "/images/libp2p.io/cleichner@124x149.jpeg",
+        "small": "/images/libp2p.io/cleichner@62x74.jpeg"
+      },
+      "username": "cleichner"
+    },
+    {
+      "url": "https://github.com/cryptix",
+      "photo": {
+        "big": "/images/libp2p.io/cryptix@124x149.png",
+        "small": "/images/libp2p.io/cryptix@62x74.png"
+      },
+      "username": "cryptix"
+    },
+    {
+      "url": "https://github.com/danoctavian",
+      "photo": {
+        "big": "/images/libp2p.io/danoctavian@124x149.jpeg",
+        "small": "/images/libp2p.io/danoctavian@62x74.jpeg"
+      },
+      "username": "danoctavian"
+    },
+    {
+      "url": "https://github.com/diasdavid",
+      "photo": {
+        "big": "/images/libp2p.io/diasdavid@124x149.jpeg",
+        "small": "/images/libp2p.io/diasdavid@62x74.jpeg"
+      },
+      "username": "diasdavid"
+    },
+    {
+      "url": "https://github.com/dignifiedquire",
+      "photo": {
+        "big": "/images/libp2p.io/dignifiedquire@124x149.jpeg",
+        "small": "/images/libp2p.io/dignifiedquire@62x74.jpeg"
+      },
+      "username": "dignifiedquire"
+    },
+    {
+      "url": "https://github.com/dominictarr",
+      "photo": {
+        "big": "/images/libp2p.io/dominictarr@124x149.jpeg",
+        "small": "/images/libp2p.io/dominictarr@62x74.jpeg"
+      },
+      "username": "dominictarr"
+    },
+    {
+      "url": "https://github.com/dryajov",
+      "photo": {
+        "big": "/images/libp2p.io/dryajov@124x149.jpeg",
+        "small": "/images/libp2p.io/dryajov@62x74.jpeg"
+      },
+      "username": "dryajov"
+    },
+    {
+      "url": "https://github.com/dukejones",
+      "photo": {
+        "big": "/images/libp2p.io/dukejones@124x149.jpeg",
+        "small": "/images/libp2p.io/dukejones@62x74.jpeg"
+      },
+      "username": "dukejones"
+    },
+    {
+      "url": "https://github.com/dyba",
+      "photo": {
+        "big": "/images/libp2p.io/dyba@124x149.jpeg",
+        "small": "/images/libp2p.io/dyba@62x74.jpeg"
+      },
+      "username": "dyba"
+    },
+    {
+      "url": "https://github.com/elavoie",
+      "photo": {
+        "big": "/images/libp2p.io/elavoie@124x149.jpeg",
+        "small": "/images/libp2p.io/elavoie@62x74.jpeg"
+      },
+      "username": "elavoie"
+    },
+    {
+      "url": "https://github.com/elimisteve",
+      "photo": {
+        "big": "/images/libp2p.io/elimisteve@124x149.png",
+        "small": "/images/libp2p.io/elimisteve@62x74.png"
+      },
+      "username": "elimisteve"
+    },
+    {
+      "url": "https://github.com/emersion",
+      "photo": {
+        "big": "/images/libp2p.io/emersion@124x149.png",
+        "small": "/images/libp2p.io/emersion@62x74.png"
+      },
+      "username": "emersion"
+    },
+    {
+      "url": "https://github.com/emschwartz",
+      "photo": {
+        "big": "/images/libp2p.io/emschwartz@124x149.jpeg",
+        "small": "/images/libp2p.io/emschwartz@62x74.jpeg"
+      },
+      "username": "emschwartz"
+    },
+    {
+      "url": "https://github.com/gavinmcdermott",
+      "photo": {
+        "big": "/images/libp2p.io/gavinmcdermott@124x149.png",
+        "small": "/images/libp2p.io/gavinmcdermott@62x74.png"
+      },
+      "username": "gavinmcdermott"
+    },
+    {
+      "url": "https://github.com/geoah",
+      "photo": {
+        "big": "/images/libp2p.io/geoah@124x149.jpeg",
+        "small": "/images/libp2p.io/geoah@62x74.jpeg"
+      },
+      "username": "geoah"
+    },
+    {
+      "url": "https://github.com/greenkeeperio-bot",
+      "photo": {
+        "big": "/images/libp2p.io/greenkeeperio-bot@124x149.png",
+        "small": "/images/libp2p.io/greenkeeperio-bot@62x74.png"
+      },
+      "username": "greenkeeperio-bot"
+    },
+    {
+      "url": "https://github.com/haadcode",
+      "photo": {
+        "big": "/images/libp2p.io/haadcode@124x149.png",
+        "small": "/images/libp2p.io/haadcode@62x74.png"
+      },
+      "username": "haadcode"
+    },
+    {
+      "url": "https://github.com/harlantwood",
+      "photo": {
+        "big": "/images/libp2p.io/harlantwood@124x149.jpeg",
+        "small": "/images/libp2p.io/harlantwood@62x74.jpeg"
+      },
+      "username": "harlantwood"
+    },
+    {
+      "url": "https://github.com/heems",
+      "photo": {
+        "big": "/images/libp2p.io/heems@124x149.jpeg",
+        "small": "/images/libp2p.io/heems@62x74.jpeg"
+      },
+      "username": "heems"
+    },
+    {
+      "url": "https://github.com/hosh",
+      "photo": {
+        "big": "/images/libp2p.io/hosh@124x149.jpeg",
+        "small": "/images/libp2p.io/hosh@62x74.jpeg"
+      },
+      "username": "hosh"
+    },
+    {
+      "url": "https://github.com/hsanjuan",
+      "photo": {
+        "big": "/images/libp2p.io/hsanjuan@124x149.jpeg",
+        "small": "/images/libp2p.io/hsanjuan@62x74.jpeg"
+      },
+      "username": "hsanjuan"
+    },
+    {
+      "url": "https://github.com/interfect",
+      "photo": {
+        "big": "/images/libp2p.io/interfect@124x149.png",
+        "small": "/images/libp2p.io/interfect@62x74.png"
+      },
+      "username": "interfect"
+    },
+    {
+      "url": "https://github.com/ivilata",
+      "photo": {
+        "big": "/images/libp2p.io/ivilata@124x149.jpeg",
+        "small": "/images/libp2p.io/ivilata@62x74.jpeg"
+      },
+      "username": "ivilata"
+    },
+    {
+      "url": "https://github.com/jbenet",
+      "photo": {
+        "big": "/images/libp2p.io/jbenet@124x149.jpeg",
+        "small": "/images/libp2p.io/jbenet@62x74.jpeg"
+      },
+      "username": "jbenet"
+    },
+    {
+      "url": "https://github.com/jhulten",
+      "photo": {
+        "big": "/images/libp2p.io/jhulten@124x149.jpeg",
+        "small": "/images/libp2p.io/jhulten@62x74.jpeg"
+      },
+      "username": "jhulten"
+    },
+    {
+      "url": "https://github.com/keks",
+      "photo": {
+        "big": "/images/libp2p.io/keks@124x149.png",
+        "small": "/images/libp2p.io/keks@62x74.png"
+      },
+      "username": "keks"
+    },
+    {
+      "url": "https://github.com/kevina",
+      "photo": {
+        "big": "/images/libp2p.io/kevina@124x149.png",
+        "small": "/images/libp2p.io/kevina@62x74.png"
+      },
+      "username": "kevina"
+    },
+    {
+      "url": "https://github.com/kobigurk",
+      "photo": {
+        "big": "/images/libp2p.io/kobigurk@124x149.jpeg",
+        "small": "/images/libp2p.io/kobigurk@62x74.jpeg"
+      },
+      "username": "kobigurk"
+    },
+    {
+      "url": "https://github.com/kyledrake",
+      "photo": {
+        "big": "/images/libp2p.io/kyledrake@124x149.jpeg",
+        "small": "/images/libp2p.io/kyledrake@62x74.jpeg"
+      },
+      "username": "kyledrake"
+    },
+    {
+      "url": "https://github.com/lgierth",
+      "photo": {
+        "big": "/images/libp2p.io/lgierth@124x149.jpeg",
+        "small": "/images/libp2p.io/lgierth@62x74.jpeg"
+      },
+      "username": "lgierth"
+    },
+    {
+      "url": "https://github.com/llSourcell",
+      "photo": {
+        "big": "/images/libp2p.io/llSourcell@124x149.png",
+        "small": "/images/libp2p.io/llSourcell@62x74.png"
+      },
+      "username": "llSourcell"
+    },
+    {
+      "url": "https://github.com/masylum",
+      "photo": {
+        "big": "/images/libp2p.io/masylum@124x149.jpeg",
+        "small": "/images/libp2p.io/masylum@62x74.jpeg"
+      },
+      "username": "masylum"
+    },
+    {
+      "url": "https://github.com/mayerwin",
+      "photo": {
+        "big": "/images/libp2p.io/mayerwin@124x149.png",
+        "small": "/images/libp2p.io/mayerwin@62x74.png"
+      },
+      "username": "mayerwin"
+    },
+    {
+      "url": "https://github.com/michaelfakhri",
+      "photo": {
+        "big": "/images/libp2p.io/michaelfakhri@124x149.jpeg",
+        "small": "/images/libp2p.io/michaelfakhri@62x74.jpeg"
+      },
+      "username": "michaelfakhri"
+    },
+    {
+      "url": "https://github.com/mnp",
+      "photo": {
+        "big": "/images/libp2p.io/mnp@124x149.png",
+        "small": "/images/libp2p.io/mnp@62x74.png"
+      },
+      "username": "mnp"
+    },
+    {
+      "url": "https://github.com/nginnever",
+      "photo": {
+        "big": "/images/libp2p.io/nginnever@124x149.jpeg",
+        "small": "/images/libp2p.io/nginnever@62x74.jpeg"
+      },
+      "username": "nginnever"
+    },
+    {
+      "url": "https://github.com/nicola",
+      "photo": {
+        "big": "/images/libp2p.io/nicola@124x149.jpeg",
+        "small": "/images/libp2p.io/nicola@62x74.jpeg"
+      },
+      "username": "nicola"
+    },
+    {
+      "url": "https://github.com/nikuda",
+      "photo": {
+        "big": "/images/libp2p.io/nikuda@124x149.jpeg",
+        "small": "/images/libp2p.io/nikuda@62x74.jpeg"
+      },
+      "username": "nikuda"
+    },
+    {
+      "url": "https://github.com/noffle",
+      "photo": {
+        "big": "/images/libp2p.io/noffle@124x149.jpeg",
+        "small": "/images/libp2p.io/noffle@62x74.jpeg"
+      },
+      "username": "noffle"
+    },
+    {
+      "url": "https://github.com/npmcdn-to-unpkg-bot",
+      "photo": {
+        "big": "/images/libp2p.io/npmcdn-to-unpkg-bot@124x149.png",
+        "small": "/images/libp2p.io/npmcdn-to-unpkg-bot@62x74.png"
+      },
+      "username": "npmcdn-to-unpkg-bot"
+    },
+    {
+      "url": "https://github.com/nunofmn",
+      "photo": {
+        "big": "/images/libp2p.io/nunofmn@124x149.jpeg",
+        "small": "/images/libp2p.io/nunofmn@62x74.jpeg"
+      },
+      "username": "nunofmn"
+    },
+    {
+      "url": "https://github.com/pawal",
+      "photo": {
+        "big": "/images/libp2p.io/pawal@124x149.jpeg",
+        "small": "/images/libp2p.io/pawal@62x74.jpeg"
+      },
+      "username": "pawal"
+    },
+    {
+      "url": "https://github.com/pjz",
+      "photo": {
+        "big": "/images/libp2p.io/pjz@124x149.png",
+        "small": "/images/libp2p.io/pjz@62x74.png"
+      },
+      "username": "pjz"
+    },
+    {
+      "url": "https://github.com/plasmashadow",
+      "photo": {
+        "big": "/images/libp2p.io/plasmashadow@124x149.jpeg",
+        "small": "/images/libp2p.io/plasmashadow@62x74.jpeg"
+      },
+      "username": "plasmashadow"
+    },
+    {
+      "url": "https://github.com/prashcr",
+      "photo": {
+        "big": "/images/libp2p.io/prashcr@124x149.jpeg",
+        "small": "/images/libp2p.io/prashcr@62x74.jpeg"
+      },
+      "username": "prashcr"
+    },
+    {
+      "url": "https://github.com/prikevs",
+      "photo": {
+        "big": "/images/libp2p.io/prikevs@124x149.jpeg",
+        "small": "/images/libp2p.io/prikevs@62x74.jpeg"
+      },
+      "username": "prikevs"
+    },
+    {
+      "url": "https://github.com/prusnak",
+      "photo": {
+        "big": "/images/libp2p.io/prusnak@124x149.jpeg",
+        "small": "/images/libp2p.io/prusnak@62x74.jpeg"
+      },
+      "username": "prusnak"
+    },
+    {
+      "url": "https://github.com/quaelin",
+      "photo": {
+        "big": "/images/libp2p.io/quaelin@124x149.jpeg",
+        "small": "/images/libp2p.io/quaelin@62x74.jpeg"
+      },
+      "username": "quaelin"
+    },
+    {
+      "url": "https://github.com/remram44",
+      "photo": {
+        "big": "/images/libp2p.io/remram44@124x149.jpeg",
+        "small": "/images/libp2p.io/remram44@62x74.jpeg"
+      },
+      "username": "remram44"
+    },
+    {
+      "url": "https://github.com/rht",
+      "photo": {
+        "big": "/images/libp2p.io/rht@124x149.jpeg",
+        "small": "/images/libp2p.io/rht@62x74.jpeg"
+      },
+      "username": "rht"
+    },
+    {
+      "url": "https://github.com/sqs",
+      "photo": {
+        "big": "/images/libp2p.io/sqs@124x149.jpeg",
+        "small": "/images/libp2p.io/sqs@62x74.jpeg"
+      },
+      "username": "sqs"
+    },
+    {
+      "url": "https://github.com/tabrath",
+      "photo": {
+        "big": "/images/libp2p.io/tabrath@124x149.jpeg",
+        "small": "/images/libp2p.io/tabrath@62x74.jpeg"
+      },
+      "username": "tabrath"
+    },
+    {
+      "url": "https://github.com/techfreek",
+      "photo": {
+        "big": "/images/libp2p.io/techfreek@124x149.jpeg",
+        "small": "/images/libp2p.io/techfreek@62x74.jpeg"
+      },
+      "username": "techfreek"
+    },
+    {
+      "url": "https://github.com/tilgovi",
+      "photo": {
+        "big": "/images/libp2p.io/tilgovi@124x149.jpeg",
+        "small": "/images/libp2p.io/tilgovi@62x74.jpeg"
+      },
+      "username": "tilgovi"
+    },
+    {
+      "url": "https://github.com/torarnv",
+      "photo": {
+        "big": "/images/libp2p.io/torarnv@124x149.jpeg",
+        "small": "/images/libp2p.io/torarnv@62x74.jpeg"
+      },
+      "username": "torarnv"
+    },
+    {
+      "url": "https://github.com/tswindell",
+      "photo": {
+        "big": "/images/libp2p.io/tswindell@124x149.jpeg",
+        "small": "/images/libp2p.io/tswindell@62x74.jpeg"
+      },
+      "username": "tswindell"
+    },
+    {
+      "url": "https://github.com/tv42",
+      "photo": {
+        "big": "/images/libp2p.io/tv42@124x149.jpeg",
+        "small": "/images/libp2p.io/tv42@62x74.jpeg"
+      },
+      "username": "tv42"
+    },
+    {
+      "url": "https://github.com/vyzo",
+      "photo": {
+        "big": "/images/libp2p.io/vyzo@124x149.png",
+        "small": "/images/libp2p.io/vyzo@62x74.png"
+      },
+      "username": "vyzo"
+    },
+    {
+      "url": "https://github.com/wemeetagain",
+      "photo": {
+        "big": "/images/libp2p.io/wemeetagain@124x149.jpeg",
+        "small": "/images/libp2p.io/wemeetagain@62x74.jpeg"
+      },
+      "username": "wemeetagain"
+    },
+    {
+      "url": "https://github.com/whyrusleeping",
+      "photo": {
+        "big": "/images/libp2p.io/whyrusleeping@124x149.jpeg",
+        "small": "/images/libp2p.io/whyrusleeping@62x74.jpeg"
+      },
+      "username": "whyrusleeping"
+    },
+    {
+      "url": "https://github.com/xicombd",
+      "photo": {
+        "big": "/images/libp2p.io/xicombd@124x149.jpeg",
+        "small": "/images/libp2p.io/xicombd@62x74.jpeg"
+      },
+      "username": "xicombd"
+    },
+    {
+      "url": "https://github.com/yusefnapora",
+      "photo": {
+        "big": "/images/libp2p.io/yusefnapora@124x149.png",
+        "small": "/images/libp2p.io/yusefnapora@62x74.png"
+      },
+      "username": "yusefnapora"
+    },
+    {
+      "url": "https://github.com/zjiekai",
+      "photo": {
+        "big": "/images/libp2p.io/zjiekai@124x149.png",
+        "small": "/images/libp2p.io/zjiekai@62x74.png"
+      },
+      "username": "zjiekai"
+    }
+  ]
+}

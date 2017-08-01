@@ -8,6 +8,9 @@ Options:
   -w, --width       Photo width (at 1x) [240]
   -s, --spacing     Spacing between photos [0]
   -b, --background  Background color behind photos with transparency
-  -r, --breakpoint  Width at which large photos are displayed
+  -k, --breakpoint  Width at which large photos are displayed [570]
+  -r, --rows        Number of rows of photos to render [5]
+  -d, --duration    Animation duration in seconds [60]
+  -f, --timing      Animation timing function [ease-in-out]
   -e, --endpoint    Contributors API URL [https://contributors.cloud.ipfs.team/contributors]
   -c, --cwd         Working directory

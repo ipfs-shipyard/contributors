@@ -7,6 +7,20 @@ Create a page that can be embedded on a website that lists project contributors.
 * [Node.js](https://nodejs.org/) >= 6
 * [Hugo](https://gohugo.io/)
 
+## Examples
+
+```sh
+node scripts/bin/create protocol.ai --org all --rows 4 --duration 120 --spacing 10 --title "Protocol Labs Contributors"
+```
+
+![screen shot 2017-08-01 at 17 13 36-fullpage](https://user-images.githubusercontent.com/152863/28835323-dd126eb0-76dc-11e7-99a7-e7ae4495b203.png)
+
+```sh
+node scripts/bin/create libp2p.io --org libp2p --width 124 --title "libp2p contributors"
+```
+
+![screen shot 2017-08-01 at 17 13 11-fullpage](https://user-images.githubusercontent.com/152863/28835317-db6147c6-76dc-11e7-9717-0d86f0656405.png)
+
 ## Create a new project page
 
 ```sh

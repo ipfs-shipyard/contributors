@@ -7,10 +7,12 @@
     "photoWidthSmall": 120,
     "photoHeightSmall": 144,
     "photoBackgroundColor": "black",
-    "rows": 5,
-    "breakpoint": "570px",
+    "rows": 4,
+    "breakpoint": 570,
     "spacingBig": 10,
-    "spacingSmall": 3
+    "spacingSmall": 3,
+    "animationDuration": 120,
+    "animationTimingFunction": "ease-in-out"
   },
   "contributors": [
     {

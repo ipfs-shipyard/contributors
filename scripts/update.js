@@ -28,9 +28,11 @@ function update (name, opts, cb) {
 
       // Page style
       opts.rows = opts.rows || data.config.rows || 5
-      opts.breakpoint = opts.breakpoint || data.config.breakpoint || '570px'
+      opts.breakpoint = opts.breakpoint || data.config.breakpoint || 570
       opts.spacingBig = opts.spacingBig || data.config.spacingBig || 0
       opts.spacingSmall = opts.spacingSmall || data.config.spacingSmall || Math.round(opts.spacingBig / 2)
+      opts.animationDuration = opts.animationDuration || data.config.animationDuration || 60
+      opts.animationTimingFunction = opts.animationTimingFunction || data.config.animationTimingFunction || 'ease-in-out'
       // Contributors API fetch options
       opts.fetchContributors = opts.fetchContributors || fetchContributors
       opts.contributorsOrg = opts.contributorsOrg || data.config.contributorsOrg || 'all'
@@ -99,7 +101,9 @@ function update (name, opts, cb) {
             rows: opts.rows,
             breakpoint: opts.breakpoint,
             spacingBig: opts.spacingBig,
-            spacingSmall: opts.spacingSmall
+            spacingSmall: opts.spacingSmall,
+            animationDuration: opts.animationDuration,
+            animationTimingFunction: opts.animationTimingFunction
           }
           writeDataFile(opts.cwd, name, contributors, photos, config, cb)
         }]
