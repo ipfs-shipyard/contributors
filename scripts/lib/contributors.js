@@ -60,7 +60,10 @@ function writeDataFile (cwd, name, contributors, photos, config, cb) {
 module.exports.writeDataFile = writeDataFile
 
 function readDataFile (cwd, name, cb) {
-  Fs.readFile(getDataFilePath(cwd, name), (err, data) => {
+  const path = getDataFilePath(cwd, name)
+  debug(`Reading data file at ${path}`)
+
+  Fs.readFile(path, (err, data) => {
     if (err) return cb(err)
 
     try {

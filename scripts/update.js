@@ -26,12 +26,6 @@ function update (name, opts, cb) {
     readDataFile(opts.cwd, name, (err, data) => {
       if (err) return cb(err)
 
-      try {
-        data = JSON.parse(data)
-      } catch (err) {
-        return cb(err)
-      }
-
       // Page style
       opts.rows = opts.rows || data.config.rows || 5
       opts.breakpoint = opts.breakpoint || data.config.breakpoint || '570px'
