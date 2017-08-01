@@ -8,11 +8,13 @@
     #contributors .hex {
       width: {{ div $data.config.photoWidthSmall 2 }}px;
       height: {{ div $data.config.photoHeightSmall 2 }}px;
+      margin: {{ $data.config.spacingSmall }}px;
     }
     @media (min-width: {{ $data.config.breakpoint }}) {
       #contributors .hex {
         width: {{ div $data.config.photoWidthBig 2 }}px;
         height: {{ div $data.config.photoHeightBig 2 }}px;
+        margin: {{ $data.config.spacingBig }}px;
       }
     }
   </style>

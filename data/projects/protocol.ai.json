@@ -8,7 +8,9 @@
     "photoHeightSmall": 144,
     "photoBackgroundColor": "black",
     "rows": 5,
-    "breakpoint": "570px"
+    "breakpoint": "570px",
+    "spacingBig": 10,
+    "spacingSmall": 3
   },
   "contributors": [
     {

@@ -5,6 +5,7 @@ Usage: update "project-name" [options...]
 Options:
   -o, --org         Github org to get contributors for [all]
   -w, --width       Photo width (at 1x) [240]
+  -s, --spacing     Spacing between photos [0]
   -b, --background  Background color behind photos with transparency
   -r, --breakpoint  Width at which large photos are displayed
   -e, --endpoint    Contributors API URL [https://contributors.cloud.ipfs.team/contributors]

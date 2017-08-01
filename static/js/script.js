@@ -15,8 +15,9 @@
   function tesselate (container) {
     var elements = container.querySelectorAll('.hex')
     var hexStyle = window.getComputedStyle(elements[0])
-    var hexWidth = parseInt(hexStyle.width, 10)
-    var hexHeight = parseInt(hexStyle.height, 10)
+    var hexSpacing = parseInt(hexStyle.marginTop, 10) * 2
+    var hexWidth = parseInt(hexStyle.width, 10) + hexSpacing
+    var hexHeight = parseInt(hexStyle.height, 10) + hexSpacing
 
     var rows = container.querySelectorAll('.row')
     var rowWidth = Math.ceil(elements.length / rows.length) * hexWidth

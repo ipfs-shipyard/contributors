@@ -1,4 +1,6 @@
 const Path = require('path')
+const Fs = require('fs')
+const { F_OK } = Fs.constants
 const Yaml = require('yamljs')
 const debug = require('debug')('contribs:contributors')
 const Request = require('request')
@@ -33,8 +35,14 @@ function fetchContributors (opts, cb) {
 
 module.exports.fetchContributors = fetchContributors
 
-function writeDataFile (destDir, name, contributors, photos, config, cb) {
-  const dest = Path.join(destDir, `${name}.json`)
+function getDataFilePath (cwd, name) {
+  return Path.join(cwd, 'data', 'projects', `${name}.json`)
+}
+
+module.exports.getDataFilePath = getDataFilePath
+
+function writeDataFile (cwd, name, contributors, photos, config, cb) {
+  const dest = getDataFilePath(cwd, name)
   debug(`Writing data file to ${dest}`)
 
   const data = {
@@ -51,8 +59,36 @@ function writeDataFile (destDir, name, contributors, photos, config, cb) {
 
 module.exports.writeDataFile = writeDataFile
 
-function writeContentFile (destDir, name, data, cb) {
-  const dest = Path.join(destDir, `${name}.md`)
+function readDataFile (cwd, name, cb) {
+  Fs.readFile(getDataFilePath(cwd, name), (err, data) => {
+    if (err) return cb(err)
+
+    try {
+      data = JSON.parse(data)
+    } catch (err) {
+      return cb(err)
+    }
+
+    cb(null, data)
+  })
+}
+
+module.exports.readDataFile = readDataFile
+
+function getContentFilePath (cwd, name) {
+  return Path.join(cwd, 'content', 'projects', `${name}.md`)
+}
+
+module.exports.getContentFilePath = getContentFilePath
+
+function contentFileExists (cwd, name, cb) {
+  Fs.access(getContentFilePath(cwd, name), F_OK, (err) => cb(null, !err))
+}
+
+module.exports.contentFileExists = contentFileExists
+
+function writeContentFile (cwd, name, data, cb) {
+  const dest = getContentFilePath(cwd, name)
   debug(`Writing content file to ${dest}`)
 
   const content = data && Object.keys(data).length > 0
@@ -63,3 +99,9 @@ function writeContentFile (destDir, name, data, cb) {
 }
 
 module.exports.writeContentFile = writeContentFile
+
+function getImagesDirPath (cwd, name) {
+  return Path.join(cwd, 'static', 'images', name)
+}
+
+module.exports.getImagesDirPath = getImagesDirPath

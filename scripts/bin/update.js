@@ -25,6 +25,10 @@ if (argv.width || argv.w) {
   opts.photoWidthBig = argv.width || argv.w
 }
 
+if (argv.spacing || argv.s) {
+  opts.spacingBig = argv.spacing || argv.s
+}
+
 if (argv.background || argv.b) {
   opts.photoBackgroundColor = argv.background || argv.b
 }
@@ -40,5 +44,7 @@ if (argv.endpoint || argv.e) {
 if (argv.cwd || argv.c) {
   opts.cwd = argv.cwd || argv.c
 }
+
+console.log('Please wait...')
 
 update(argv._[0], opts, (err) => { if (err) throw err })

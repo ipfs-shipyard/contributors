@@ -1,11 +1,10 @@
 const test = require('tape')
 const Fs = require('fs')
-const Path = require('path')
 const Faker = require('faker')
 const Yaml = require('yamljs')
 const { withTmpDir } = require('../helpers/tmpdir')
 const { withContributorsServer } = require('../helpers/fixtures')
-const { fetchContributors, writeDataFile, writeContentFile } = require('./contributors')
+const { fetchContributors, writeDataFile, writeContentFile, getContentFilePath, getDataFilePath } = require('./contributors')
 
 test('should fetch contributors', withContributorsServer((t, server) => {
   t.plan(3)
@@ -49,7 +48,7 @@ test('should write data file', withTmpDir((t, tmpDir) => {
   writeDataFile(tmpDir, name, contributors, photos, config, (err) => {
     t.ifError(err, 'no error updating file')
 
-    const expectedPath = Path.join(tmpDir, `${name}.json`)
+    const expectedPath = getDataFilePath(tmpDir, name)
     const dataFileContent = JSON.parse(Fs.readFileSync(expectedPath))
 
     t.equal(dataFileContent.contributors.length, 1, 'contributor added to data file')
@@ -76,7 +75,7 @@ test('should write content file', withTmpDir((t, tmpDir) => {
   writeContentFile(tmpDir, name, { title }, (err) => {
     t.ifError(err, 'no error writing content file')
 
-    const expectedPath = Path.join(tmpDir, `${name}.md`)
+    const expectedPath = getContentFilePath(tmpDir, name)
     const expectedContent = Yaml.load(expectedPath)
 
     t.equals(expectedContent.title, title, 'content file contents are correct')
@@ -92,7 +91,7 @@ test('should write empty content file if no data', withTmpDir((t, tmpDir) => {
   writeContentFile(tmpDir, name, null, (err) => {
     t.ifError(err, 'no error writing content file')
 
-    const expectedPath = Path.join(tmpDir, `${name}.md`)
+    const expectedPath = getContentFilePath(tmpDir, name)
     const expectedContent = Fs.readFileSync(expectedPath, 'utf8')
 
     t.equals(expectedContent, '', 'content file contents are correct')

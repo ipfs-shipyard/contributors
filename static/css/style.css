@@ -14,6 +14,7 @@ html, body {
 #contributors .row {
   position: absolute;
   overflow: visible;
+  white-space: nowrap;
 }
 #contributors .row:hover {
   z-index: 20;

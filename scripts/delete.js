@@ -1,8 +1,8 @@
 const Fs = require('fs')
-const Path = require('path')
 const Async = require('async')
 const debug = require('debug')('contribs:delete')
 const rimraf = require('rimraf')
+const { getContentFilePath, getDataFilePath, getImagesDirPath } = require('./lib/contributors')
 
 function del (name, opts, cb) {
   if (!name) return process.nextTick(() => cb(new Error('Project name is required')))
@@ -19,17 +19,17 @@ function del (name, opts, cb) {
 
   Async.parallel([
     (cb) => {
-      const contentFilePath = Path.join(opts.cwd, 'content', 'projects', `${name}.md`)
+      const contentFilePath = getContentFilePath(opts.cwd, name)
       debug(`Deleting ${contentFilePath}`)
       Fs.unlink(contentFilePath, cb)
     },
     (cb) => {
-      const dataFilePath = Path.join(opts.cwd, 'data', 'projects', `${name}.json`)
+      const dataFilePath = getDataFilePath(opts.cwd, name)
       debug(`Deleting ${dataFilePath}`)
       Fs.unlink(dataFilePath, cb)
     },
     (cb) => {
-      const imagesDir = Path.join(opts.cwd, 'static', 'images', `${name}`)
+      const imagesDir = getImagesDirPath(opts.cwd, name)
       debug(`Deleting ${imagesDir}`)
       rimraf(imagesDir, cb)
     }

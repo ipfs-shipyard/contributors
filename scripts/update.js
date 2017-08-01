@@ -1,9 +1,6 @@
-const Fs = require('fs')
-const { F_OK } = Fs.constants
-const Path = require('path')
 const Async = require('async')
 const debug = require('debug')('contribs:create')
-const { fetchContributors, writeDataFile } = require('./lib/contributors')
+const { fetchContributors, writeDataFile, getImagesDirPath, readDataFile, contentFileExists } = require('./lib/contributors')
 const { moveFiles } = require('./lib/file-system')
 const { downloadPhotos } = require('./lib/photo-transfer')
 const { resizePhotos } = require('./lib/photo-manipulate')
@@ -21,14 +18,12 @@ function update (name, opts, cb) {
   opts = opts || {}
   opts.cwd = opts.cwd || process.cwd()
 
-  const contentFilePath = Path.join(opts.cwd, 'content', 'projects', `${name}.md`)
-  const dataFilePath = Path.join(opts.cwd, 'data', 'projects', `${name}.json`)
-
-  Fs.access(contentFilePath, F_OK, (err) => {
-    if (err) return cb(new Error(`Project "${name}" does not exist in ${opts.cwd}`))
+  contentFileExists(opts.cwd, name, (err, exists) => {
+    if (err) return cb(err)
+    if (!exists) return cb(new Error(`Project "${name}" does not exist in ${opts.cwd}`))
 
     // Fetch the existing data file so we can read the configuration
-    Fs.readFile(dataFilePath, (err, data) => {
+    readDataFile(opts.cwd, name, (err, data) => {
       if (err) return cb(err)
 
       try {
@@ -40,6 +35,8 @@ function update (name, opts, cb) {
       // Page style
       opts.rows = opts.rows || data.config.rows || 5
       opts.breakpoint = opts.breakpoint || data.config.breakpoint || '570px'
+      opts.spacingBig = opts.spacingBig || data.config.spacingBig || 0
+      opts.spacingSmall = opts.spacingSmall || data.config.spacingSmall || Math.round(opts.spacingBig / 2)
       // Contributors API fetch options
       opts.fetchContributors = opts.fetchContributors || fetchContributors
       opts.contributorsOrg = opts.contributorsOrg || data.config.contributorsOrg || 'all'
@@ -90,13 +87,12 @@ function update (name, opts, cb) {
 
         movedPhotos: ['bigPhotos', 'smallPhotos', (results, cb) => {
           const srcs = results.bigPhotos.concat(results.smallPhotos).filter(Boolean)
-          const dest = Path.join(opts.cwd, 'static', 'images', name)
+          const dest = getImagesDirPath(opts.cwd, name)
           moveFiles(srcs, dest, { concurrency: opts.photoMoveConcurrency }, cb)
         }],
 
         dataFile: ['contributors', 'bigPhotos', 'smallPhotos', (results, cb) => {
           const { contributors, bigPhotos, smallPhotos } = results
-          const dest = Path.join(opts.cwd, 'data', 'projects')
           const photos = { big: bigPhotos, small: smallPhotos }
           const config = {
             contributorsEndpoint: opts.contributorsEndpoint,
@@ -107,9 +103,11 @@ function update (name, opts, cb) {
             photoHeightSmall: opts.photoHeightSmall,
             photoBackgroundColor: opts.photoBackgroundColor,
             rows: opts.rows,
-            breakpoint: opts.breakpoint
+            breakpoint: opts.breakpoint,
+            spacingBig: opts.spacingBig,
+            spacingSmall: opts.spacingSmall
           }
-          writeDataFile(dest, name, contributors, photos, config, cb)
+          writeDataFile(opts.cwd, name, contributors, photos, config, cb)
         }]
       }, cb)
     })
