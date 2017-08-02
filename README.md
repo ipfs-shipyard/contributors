@@ -27,6 +27,12 @@ Install dependencies:
 * [Node.js](https://nodejs.org/) >= 6
 * [Hugo](https://gohugo.io/)
 
+Note that `sharp` (image manipulation library) has additional dependencies that should just work:
+
+> Most recent Linux-based operating systems with glibc running on x64 and ARMv6+ CPUs should "just work"
+
+If you're having a bad time then check the [installation requirements here](http://sharp.dimens.io/en/stable/install/).
+
 ## Usage
 
 ### Create a new project page
