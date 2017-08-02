@@ -45,6 +45,8 @@ N.B. `node scripts/bin/create --help` for [usage instructions](scripts/bin/creat
 
 ### Update an existing project page
 
+Using the existing config, this will fetch an updated list of contributors from the API, update the avatars for each contributor, and apply any config changes passed.
+
 ```sh
 node scripts/bin/update my-project-name
 # You can also pass the same args to the update script as you can to the create
