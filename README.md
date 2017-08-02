@@ -29,60 +29,13 @@ Install dependencies:
 
 ## Usage
 
-To deploy the site, run:
-
-```sh
-# Build out the optimised site to ./public, where you can check it locally.
-make
-
-# Add the site to your local ipfs, you can check it via /ipfs/<hash>
-make deploy
-
-# Save your dnsimple api token as auth.token
-cat "<api token here>" > auth.token
-
-# Update the dns record for libp2p to point to the new ipfs hash.
-make publish-to-domain
-```
-
-The following commands are available:
-
-### `make`
-
-Build the optimised site to the `./public` dir
-
-### `make serve`
-
-Preview the production ready site at http://localhost:1313 _(requires `hugo` on your `PATH`)_
-
-### `make dev`
-
-Start a hot-reloading dev server on http://localhost:1313 _(requires `hugo` on your `PATH`)_
-
-### `make minify`
-
-Optimise all the things!
-
-### `make deploy`
-
-Build the site in the `public` dir and add to `ipfs` _(requires `hugo` & `ipfs` on your `PATH`)_
-
-### `make publish-to-domain` :rocket:
-
-Update the DNS record for `protocol.ai`.  _(requires an `auto.token` file to be saved in the project root.)_
-
-If you'd like to update the dnslink TXT record for another domain, pass `DOMAIN=<your domain here>` like so:
-
-```sh
-make publish-to-domain DOMAIN=tableflip.io
-```
-
 ### Create a new project page
 
 ```sh
 node scripts/bin/create my-project-name --title "My project Name" --org all --size 240
-# N.B. `node scripts/bin/create --help` for usage instructions
 ```
+
+N.B. `node scripts/bin/create --help` for [usage instructions](scripts/bin/create.usage.txt)
 
 ### Update an existing project page
 
@@ -90,15 +43,17 @@ node scripts/bin/create my-project-name --title "My project Name" --org all --si
 node scripts/bin/update my-project-name
 # You can also pass the same args to the update script as you can to the create
 # script, but configuration is saved on create so you don't have to \o/
-# N.B. `node scripts/bin/update --help` for usage instructions
 ```
+
+N.B. `node scripts/bin/update --help` for [usage instructions](scripts/bin/update.usage.txt)
 
 ### Delete an existing project page
 
 ```sh
 node scripts/bin/delete my-project-name
-# N.B. `node scripts/bin/delete --help` for usage instructions
 ```
+
+N.B. `node scripts/bin/delete --help` for [usage instructions](scripts/bin/delete.usage.txt)
 
 ### Verbose logging
 
@@ -108,7 +63,7 @@ Add a DEBUG environment variable to see some logs.
 DEBUG=contribs:* node scripts/bin/update my-project-name
 ```
 
-## Embedding a page
+### Embedding a page
 
 ```html
 <!doctype html>
@@ -135,4 +90,54 @@ DEBUG=contribs:* node scripts/bin/update my-project-name
   <iframe src="http://localhost:1313/projects/protocol.ai/"></iframe>
 </body>
 </html>
+```
+
+### Deploy
+
+To deploy the site, run:
+
+```sh
+# Build out the optimised site to ./public, where you can check it locally.
+make
+
+# Add the site to your local ipfs, you can check it via /ipfs/<hash>
+make deploy
+
+# Save your dnsimple api token as auth.token
+cat "<api token here>" > auth.token
+
+# Update the dns record for libp2p to point to the new ipfs hash.
+make publish-to-domain
+```
+
+The following commands are available:
+
+#### `make`
+
+Build the optimised site to the `./public` dir
+
+#### `make serve`
+
+Preview the production ready site at http://localhost:1313 _(requires `hugo` on your `PATH`)_
+
+#### `make dev`
+
+Start a hot-reloading dev server on http://localhost:1313 _(requires `hugo` on your `PATH`)_
+
+#### `make minify`
+
+Optimise all the things!
+
+#### `make deploy`
+
+Build the site in the `public` dir and add to `ipfs` _(requires `hugo` & `ipfs` on your `PATH`)_
+
+#### `make publish-to-domain` :rocket:
+
+Update the DNS record for `ipfs.io`.  _(requires an `auto.token` file to be saved in the project root.)_
+
+If you'd like to update the dnslink TXT record for another domain, pass `DOMAIN=<your domain here>` like so:
+
+```sh
+make publish-to-domain DOMAIN=tableflip.io
 ```
