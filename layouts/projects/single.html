@@ -3,7 +3,7 @@
 <html lang="en-US">
 <head>
   <title>{{ $.Param "title" }}</title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
   <style>
     #contributors .slide {
       animation: slide {{ $data.config.animationDuration }}s {{ $data.config.animationTimingFunction }} both 0s infinite alternate paused;
@@ -46,9 +46,6 @@
       {{ end }}
     </div>
   </div>
-  <script src="/js/script.js"></script>
-  <script>
-    window.initContributorsSlider(document.getElementById('contributors'))
-  </script>
+  <script src="/js/bundle.js"></script>
 </body>
 </html>

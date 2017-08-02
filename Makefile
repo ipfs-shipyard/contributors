@@ -21,21 +21,22 @@ build: clean install lint js css minify
 	echo "Site built out to ./public dir"
 
 help:
-	@echo 'Makefile for a ipfs.io, a hugo built static site.                                                         '
-	@echo '                                                                                                          '
-	@echo 'Usage:                                                                                                    '
-	@echo '   make                                Build the optimised site to ./$(OUTPUTDIR)                         '
-	@echo '   make serve                          Preview the production ready site at http://localhost:1313         '
-	@echo '   make lint                           Check your JS and CSS are ok                                       '
-	@echo '   make js                             Browserify the *.js to ./static/js                                 '
-	@echo '   make css                            Compile the *.styl to ./static/css                                 '
-	@echo '   make minify                         Optimise all the things!                                           '
-	@echo '   make dev                            Start a hot-reloding dev server on http://localhost:1313           '
-	@echo '   make deploy                         Add the website to your local IPFS node                            '
-	@echo '   make publish-to-domain              Update $(DOMAIN) DNS record to the ipfs hash from the last deploy  '
-	@echo '   make clean                          remove the generated files                                         '
-	@echo '                                                                                                          '
-	@echo '   DEBUG=true make [command] for increased verbosity                                                      '
+	@echo 'Makefile for contribs, a hugo built static site.                                            '
+	@echo '                                                                                            '
+	@echo 'Usage:                                                                                      '
+	@echo '  make                    Build the optimised site to ./$(OUTPUTDIR)                        '
+	@echo '  make serve              Preview the production ready site at http://localhost:1313        '
+	@echo '  make lint               Check your JS and CSS are ok                                      '
+	@echo '  make test               Test the scripts                                                  '
+	@echo '  make js                 Browserify the *.js to ./static/js                                '
+	@echo '  make css                Compile the *.less to ./static/css                                '
+	@echo '  make minify             Optimise all the things!                                          '
+	@echo '  make dev                Start a hot-reloding dev server on http://localhost:1313          '
+	@echo '  make deploy             Add the website to your local IPFS node                           '
+	@echo '  make publish-to-domain  Update $(DOMAIN) DNS record to the ipfs hash from the last deploy '
+	@echo '  make clean              Remove the generated files                                        '
+	@echo '                                                                                            '
+	@echo '  DEBUG=true make [command] for increased verbosity                                         '
 
 serve: install lint js css minify
 	$(PREPEND)hugo server
@@ -50,27 +51,24 @@ install: node_modules
 lint: install
 	$(PREPEND)$(NPMBIN)/standard && $(NPMBIN)/lessc --lint less/*
 
+test: lint
+	$(PREPEND)$(NPMBIN)/tape 'scripts/**/*.test.js'
+
 js: install
-	$(PREPEND)$(NPMBIN)/browserify --noparse=jquery js/{header-and-latest,header}.js -p [ factor-bundle -o static/js/header-and-latest.js -o static/js/header.js ] -o static/js/common.js $(APPEND)
-	$(PREPEND)cp -f layouts/js/blackout.js static/js/blackout.js
+	$(PREPEND)$(NPMBIN)/browserify js/main.js -o static/js/bundle.js $(APPEND)
 
 css: install
 	$(PREPEND)$(NPMBIN)/lessc --clean-css --autoprefix less/main.less static/css/main.css $(APPEND)
 
-minify: install minify-js minify-img
+minify: install minify-js
 
 minify-js: install
 	$(PREPEND)find static/js -name '*.js' -exec $(NPMBIN)/uglifyjs {} --compress --output {} $(APPEND) \;
 
-minify-img: install
-	$(PREPEND)find static/images -type d -exec $(NPMBIN)/imagemin {}/* --out-dir={} $(APPEND) \; & \
-	find content/blog/static -type d -exec $(NPMBIN)/imagemin {}/* --out-dir={} $(APPEND) \; & \
-	wait
-
 dev: install js css
 	$(PREPEND)( \
 		$(NPMBIN)/nodemon --watch less --exec "$(NPMBIN)/lessc --clean-css --autoprefix less/main.less static/css/main.css" & \
-		$(NPMBIN)/watchify --noparse=jquery js/{header-and-latest,header}.js -p [ factor-bundle -o static/js/header-and-latest.js -o static/js/header.js ] -o static/js/common.js & \
+		$(NPMBIN)/watchify js/main.js -o static/js/bundle.js & \
 		hugo server -w \
 	)
 
@@ -98,4 +96,4 @@ clean:
 	[ ! -d static/js ] || rm -rf static/js/* && \
 	[ ! -d static/css ] || rm -rf static/css/*
 
-.PHONY: build help install lint js css minify minify-js minify-img dev deploy publish-to-domain clean
+.PHONY: build help install lint test js css minify minify-js dev deploy publish-to-domain clean

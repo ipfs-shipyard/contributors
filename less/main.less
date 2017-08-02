@@ -1,0 +1,57 @@
+html, body {
+  margin: 0;
+  background: none transparent;
+}
+@keyframes slide {
+    0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(~"calc(-100% + 100vw)",0,0); }
+}
+#contributors {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+
+  .row {
+    position: absolute;
+    overflow: visible;
+    white-space: nowrap;
+
+    &:hover {
+      z-index: 20;
+    }
+  }
+  .slide {
+    transform: translate3d(0,0,0); /* hint to prefer gpu rending. */
+    animation: slide 60s linear both 0s infinite alternate paused;
+
+    &.running {
+      animation-play-state: running;
+
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+  }
+  .hex {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 300ms ease-in, transform 100ms ease-out;
+    -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+    &.show {
+      opacity: 1;
+      position: relative;
+      z-index: 0;
+
+      &:hover {
+        transform: scale(1.2);
+        z-index: 10;
+      }
+    }
+  }
+  .holding-pen {
+    height: 0;
+    overflow: hidden;
+  }
+}
