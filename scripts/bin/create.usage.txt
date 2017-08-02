@@ -5,6 +5,7 @@ Usage: create "project-name" [options...]
 Options:
   -t, --title       Page title
   -o, --org         Github org to get contributors for [all]
+                    Available orgs: https://github.com/ipfs/get-gh-contributors
   -w, --width       Photo width (at 1x) [240]
   -s, --spacing     Spacing between photos [0]
   -b, --background  Background color behind photos with transparency
