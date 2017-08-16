@@ -13,4 +13,3 @@ Options:
   -d, --duration    Animation duration in seconds [60]
   -f, --timing      Animation timing function [linear]
   -e, --endpoint    Contributors API URL [https://contributors.cloud.ipfs.team/contributors]
-  -c, --cwd         Working directory

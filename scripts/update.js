@@ -1,6 +1,7 @@
+const Path = require('path')
 const Async = require('async')
 const debug = require('debug')('contribs:create')
-const { fetchContributors, writeDataFile, getImagesDirPath, readDataFile, contentFileExists } = require('./lib/contributors')
+const { fetchContributors, writeDataFile, getImagesDir, readDataFile, contentFileExists } = require('./lib/contributors')
 const { moveFiles } = require('./lib/file-system')
 const { downloadPhotos } = require('./lib/photo-transfer')
 const { resizePhotos } = require('./lib/photo-manipulate')
@@ -16,14 +17,14 @@ function update (name, opts, cb) {
   debug(`Updating project "${name}"`)
 
   opts = opts || {}
-  opts.cwd = opts.cwd || process.cwd()
+  opts.projectDir = opts.projectDir || Path.resolve(__dirname, '..')
 
-  contentFileExists(opts.cwd, name, (err, exists) => {
+  contentFileExists(opts.projectDir, name, (err, exists) => {
     if (err) return cb(err)
-    if (!exists) return cb(new Error(`Project "${name}" does not exist in ${opts.cwd}`))
+    if (!exists) return cb(new Error(`Project "${name}" does not exist in ${opts.projectDir}`))
 
     // Fetch the existing data file so we can read the configuration
-    readDataFile(opts.cwd, name, (err, data) => {
+    readDataFile(opts.projectDir, name, (err, data) => {
       if (err) return cb(err)
 
       // Page style
@@ -83,7 +84,7 @@ function update (name, opts, cb) {
 
         movedPhotos: ['bigPhotos', 'smallPhotos', (results, cb) => {
           const srcs = results.bigPhotos.concat(results.smallPhotos).filter(Boolean)
-          const dest = getImagesDirPath(opts.cwd, name)
+          const dest = getImagesDir(opts.projectDir, name)
           moveFiles(srcs, dest, { concurrency: opts.photoMoveConcurrency }, cb)
         }],
 
@@ -105,7 +106,7 @@ function update (name, opts, cb) {
             animationDuration: opts.animationDuration,
             animationTimingFunction: opts.animationTimingFunction
           }
-          writeDataFile(opts.cwd, name, contributors, photos, config, cb)
+          writeDataFile(opts.projectDir, name, contributors, photos, config, cb)
         }]
       }, cb)
     })

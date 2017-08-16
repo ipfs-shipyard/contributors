@@ -17,8 +17,4 @@ if (argv.version || argv.v) {
 
 const opts = {}
 
-if (argv.cwd || argv.c) {
-  opts.cwd = argv.cwd || argv.c
-}
-
 del(argv._[0], opts, (err) => { if (err) throw err })

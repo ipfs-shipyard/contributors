@@ -11,18 +11,9 @@
   "keywords": [],
   "author": "Protocol Labs",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "async": "^2.5.0",
     "debug": "^2.6.8",
-    "mime-types": "^2.1.16",
-    "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
-    "request": "^2.81.0",
-    "rimraf": "^2.6.1",
-    "sharp": "^0.18.2",
-    "yamljs": "^0.3.0"
-  },
-  "devDependencies": {
     "dnslink-deploy": "^1.0.7",
     "ecstatic": "^2.2.1",
     "faker": "^4.1.0",
@@ -30,11 +21,17 @@
     "less": "^2.7.2",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
+    "mime-types": "^2.1.16",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
     "nodemon": "^1.11.0",
-    "npm-run-all": "^4.0.2",
+    "request": "^2.81.0",
+    "rimraf": "^2.6.1",
+    "sharp": "^0.18.2",
     "standard": "^10.0.2",
     "tape": "^4.7.0",
     "uglify-js": "^3.0.18",
-    "watchify": "^3.9.0"
+    "watchify": "^3.9.0",
+    "yamljs": "^0.3.0"
   }
 }

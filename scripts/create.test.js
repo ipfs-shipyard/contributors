@@ -15,7 +15,7 @@ test('should require project name', withTmpDir((t, tmpDir) => {
   const fetchContributors = mockFetchContributors()
   const downloadPhotos = mockDownloadPhotos()
 
-  create(name, { cwd: tmpDir, fetchContributors, downloadPhotos }, (err) => {
+  create(name, { projectDir: tmpDir, fetchContributors, downloadPhotos }, (err) => {
     t.ok(err, 'expected error creating new project')
     t.equals(err.message, 'Project name is required', 'correct error was raised')
     t.end()
@@ -29,12 +29,12 @@ test('should not create if content file exists', withTmpDir((t, tmpDir) => {
   const fetchContributors = mockFetchContributors()
   const downloadPhotos = mockDownloadPhotos()
 
-  create(name, { cwd: tmpDir, fetchContributors, downloadPhotos }, (err) => {
+  create(name, { projectDir: tmpDir, fetchContributors, downloadPhotos }, (err) => {
     t.ifError(err, 'no error creating new project')
     const expectedPath = getContentFilePath(tmpDir, name)
     t.doesNotThrow(() => Fs.accessSync(expectedPath, F_OK | R_OK), 'content file exists and can be read')
 
-    create(name, { cwd: tmpDir, fetchContributors, downloadPhotos }, (err) => {
+    create(name, { projectDir: tmpDir, fetchContributors, downloadPhotos }, (err) => {
       t.ok(err, 'error was rasied creating project that already exists')
       t.equals(err.message, `Project "${name}" already exists in ${tmpDir}`, 'correct error was raised')
       t.end()
@@ -49,7 +49,7 @@ test('should create content file in correct location', withTmpDir((t, tmpDir) =>
   const fetchContributors = mockFetchContributors()
   const downloadPhotos = mockDownloadPhotos()
 
-  create(name, { cwd: tmpDir, fetchContributors, downloadPhotos }, (err) => {
+  create(name, { projectDir: tmpDir, fetchContributors, downloadPhotos }, (err) => {
     t.ifError(err, 'no error creating new project')
     const expectedPath = getContentFilePath(tmpDir, name)
     t.doesNotThrow(() => Fs.accessSync(expectedPath, F_OK | R_OK), 'content file exists and can be read')
@@ -64,7 +64,7 @@ test('should default content file title to project name if not defined', withTmp
   const fetchContributors = mockFetchContributors()
   const downloadPhotos = mockDownloadPhotos()
 
-  create(name, { cwd: tmpDir, fetchContributors, downloadPhotos }, (err) => {
+  create(name, { projectDir: tmpDir, fetchContributors, downloadPhotos }, (err) => {
     t.ifError(err, 'no error creating new project')
 
     const expectedPath = getContentFilePath(tmpDir, name)
@@ -83,7 +83,7 @@ test('should set content file title if specified', withTmpDir((t, tmpDir) => {
   const fetchContributors = mockFetchContributors()
   const downloadPhotos = mockDownloadPhotos()
 
-  create(name, { cwd: tmpDir, fetchContributors, downloadPhotos, title }, (err) => {
+  create(name, { projectDir: tmpDir, fetchContributors, downloadPhotos, title }, (err) => {
     t.ifError(err, 'no error creating new project')
 
     const expectedPath = getContentFilePath(tmpDir, name)
@@ -101,7 +101,7 @@ test('should create data file in correct location', withTmpDir((t, tmpDir) => {
   const fetchContributors = mockFetchContributors()
   const downloadPhotos = mockDownloadPhotos()
 
-  create(name, { cwd: tmpDir, fetchContributors, downloadPhotos }, (err) => {
+  create(name, { projectDir: tmpDir, fetchContributors, downloadPhotos }, (err) => {
     t.ifError(err, 'no error creating new project')
     const expectedPath = getDataFilePath(tmpDir, name)
     t.doesNotThrow(() => Fs.accessSync(expectedPath, F_OK | R_OK), 'data file exists and can be read')

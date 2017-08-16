@@ -35,14 +35,14 @@ function fetchContributors (opts, cb) {
 
 module.exports.fetchContributors = fetchContributors
 
-function getDataFilePath (cwd, name) {
-  return Path.join(cwd, 'data', 'projects', `${name}.json`)
+function getDataFilePath (projectDir, name) {
+  return Path.join(projectDir, 'data', 'projects', `${name}.json`)
 }
 
 module.exports.getDataFilePath = getDataFilePath
 
-function writeDataFile (cwd, name, contributors, photos, config, cb) {
-  const dest = getDataFilePath(cwd, name)
+function writeDataFile (projectDir, name, contributors, photos, config, cb) {
+  const dest = getDataFilePath(projectDir, name)
   debug(`Writing data file to ${dest}`)
 
   const data = {
@@ -59,8 +59,8 @@ function writeDataFile (cwd, name, contributors, photos, config, cb) {
 
 module.exports.writeDataFile = writeDataFile
 
-function readDataFile (cwd, name, cb) {
-  const path = getDataFilePath(cwd, name)
+function readDataFile (projectDir, name, cb) {
+  const path = getDataFilePath(projectDir, name)
   debug(`Reading data file at ${path}`)
 
   Fs.readFile(path, (err, data) => {
@@ -78,20 +78,20 @@ function readDataFile (cwd, name, cb) {
 
 module.exports.readDataFile = readDataFile
 
-function getContentFilePath (cwd, name) {
-  return Path.join(cwd, 'content', 'projects', `${name}.md`)
+function getContentFilePath (projectDir, name) {
+  return Path.join(projectDir, 'content', 'projects', `${name}.md`)
 }
 
 module.exports.getContentFilePath = getContentFilePath
 
-function contentFileExists (cwd, name, cb) {
-  Fs.access(getContentFilePath(cwd, name), F_OK, (err) => cb(null, !err))
+function contentFileExists (projectDir, name, cb) {
+  Fs.access(getContentFilePath(projectDir, name), F_OK, (err) => cb(null, !err))
 }
 
 module.exports.contentFileExists = contentFileExists
 
-function writeContentFile (cwd, name, data, cb) {
-  const dest = getContentFilePath(cwd, name)
+function writeContentFile (projectDir, name, data, cb) {
+  const dest = getContentFilePath(projectDir, name)
   debug(`Writing content file to ${dest}`)
 
   const content = data && Object.keys(data).length > 0
@@ -103,8 +103,8 @@ function writeContentFile (cwd, name, data, cb) {
 
 module.exports.writeContentFile = writeContentFile
 
-function getImagesDirPath (cwd, name) {
-  return Path.join(cwd, 'static', 'images', name)
+function getImagesDir (projectDir, name) {
+  return Path.join(projectDir, 'static', 'images', name)
 }
 
-module.exports.getImagesDirPath = getImagesDirPath
+module.exports.getImagesDir = getImagesDir

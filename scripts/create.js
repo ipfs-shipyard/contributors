@@ -1,6 +1,7 @@
+const Path = require('path')
 const Async = require('async')
 const debug = require('debug')('contribs:create')
-const { fetchContributors, writeDataFile, writeContentFile, getImagesDirPath, contentFileExists } = require('./lib/contributors')
+const { fetchContributors, writeDataFile, writeContentFile, getImagesDir, contentFileExists } = require('./lib/contributors')
 const { moveFiles } = require('./lib/file-system')
 const { downloadPhotos } = require('./lib/photo-transfer')
 const { resizePhotos } = require('./lib/photo-manipulate')
@@ -16,11 +17,11 @@ function create (name, opts, cb) {
   debug(`Creating new project "${name}"`)
 
   opts = opts || {}
-  opts.cwd = opts.cwd || process.cwd()
+  opts.projectDir = opts.projectDir || Path.resolve(__dirname, '..')
 
-  contentFileExists(opts.cwd, name, (err, exists) => {
+  contentFileExists(opts.projectDir, name, (err, exists) => {
     if (err) return cb(err)
-    if (exists) return cb(new Error(`Project "${name}" already exists in ${opts.cwd}`))
+    if (exists) return cb(new Error(`Project "${name}" already exists in ${opts.projectDir}`))
 
     // Page style
     opts.title = opts.title || name
@@ -82,7 +83,7 @@ function create (name, opts, cb) {
 
       movedPhotos: ['bigPhotos', 'smallPhotos', (results, cb) => {
         const srcs = results.bigPhotos.concat(results.smallPhotos).filter(Boolean)
-        const dest = getImagesDirPath(opts.cwd, name)
+        const dest = getImagesDir(opts.projectDir, name)
         moveFiles(srcs, dest, { concurrency: opts.photoMoveConcurrency }, cb)
       }],
 
@@ -104,11 +105,11 @@ function create (name, opts, cb) {
           animationDuration: opts.animationDuration,
           animationTimingFunction: opts.animationTimingFunction
         }
-        writeDataFile(opts.cwd, name, contributors, photos, config, cb)
+        writeDataFile(opts.projectDir, name, contributors, photos, config, cb)
       }],
 
       contentFile: ['bigPhotos', 'smallPhotos', (results, cb) => {
-        writeContentFile(opts.cwd, name, { title: opts.title }, cb)
+        writeContentFile(opts.projectDir, name, { title: opts.title }, cb)
       }]
     }, cb)
   })
