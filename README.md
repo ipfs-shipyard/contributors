@@ -139,13 +139,3 @@ Optimise all the things!
 #### `make deploy`
 
 Build the site in the `public` dir and add to `ipfs` _(requires `hugo` & `ipfs` on your `PATH`)_
-
-#### `make publish-to-domain` :rocket:
-
-Update the DNS record for `ipfs.io`.  _(requires an `auto.token` file to be saved in the project root.)_
-
-If you'd like to update the dnslink TXT record for another domain, pass `DOMAIN=<your domain here>` like so:
-
-```sh
-make publish-to-domain DOMAIN=tableflip.io
-```
