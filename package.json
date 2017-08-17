@@ -2,7 +2,7 @@
   "name": "contribs",
   "private": true,
   "description": "Create a page that can be embedded on a website that lists project contributors.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && tape 'scripts/**/*.test.js'",
