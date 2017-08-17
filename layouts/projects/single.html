@@ -35,8 +35,9 @@
           <img
             src="{{ .photo.big }}"
             srcset="
-              {{ .photo.big }} {{ $data.config.photoWidthBig }}w,
-              {{ .photo.small }} {{ $data.config.photoWidthSmall }}w
+              {{/* Hugo v0.22.1 doesn't do the auto relative for srcset */}}
+              ../../{{ .photo.big }} {{ $data.config.photoWidthBig }}w,
+              ../../{{ .photo.small }} {{ $data.config.photoWidthSmall }}w
             "
             sizes="
               (min-width: {{ $data.config.breakpoint }}px) {{ div $data.config.photoWidthBig 2 }}px,

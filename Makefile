@@ -72,7 +72,6 @@ dev: install js css
 	)
 
 deploy:
-	$(PREPEND)rm -rf public/blog ; \
 	ipfs add -r -q $(OUTPUTDIR) | tail -n1 >versions/current ; \
 	cat versions/current >>versions/history ; \
 	export hash=`cat versions/current`; \
