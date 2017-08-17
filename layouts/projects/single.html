@@ -13,11 +13,20 @@
       height: {{ div $data.config.photoHeightSmall 2 }}px;
       margin: {{ $data.config.spacingSmall }}px;
     }
+    #contributors .hex img {
+      width: {{ div $data.config.photoWidthSmall 2 }}px;
+      height: {{ div $data.config.photoHeightSmall 2 }}px;
+    }
     @media (min-width: {{ $data.config.breakpoint }}px) {
       #contributors .hex {
         width: {{ div $data.config.photoWidthBig 2 }}px;
         height: {{ div $data.config.photoHeightBig 2 }}px;
         margin: {{ $data.config.spacingBig }}px;
+      }
+
+      #contributors .hex img {
+        width: {{ div $data.config.photoWidthBig 2 }}px;
+        height: {{ div $data.config.photoHeightBig 2 }}px;
       }
     }
   </style>

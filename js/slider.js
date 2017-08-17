@@ -1,6 +1,6 @@
 var shuffle = require('./array').shuffle
 var eachSeriesThrottle = require('async-each-series-throttle')
-var loadingDelayMs = 50
+var loadingDelayMs = 100
 
 function tesselate (container) {
   var elements = container.querySelectorAll('.hex')
@@ -33,30 +33,27 @@ function initContributorsSlider (container) {
   var elements = container.querySelectorAll('.hex')
   elements = shuffle([].slice.call(elements))
 
-  tesselate(container)
-  window.addEventListener('resize', tesselate.bind(null, container))
+  window.requestAnimationFrame(function () {
+    tesselate(container)
+    window.addEventListener('resize', tesselate.bind(null, container))
 
-  var rows = container.querySelectorAll('.row')
-  var nextRow = 0
+    var rows = container.querySelectorAll('.row')
+    var nextRow = 0
 
-  for (var i = 0; i < elements.length; i++) {
-    rows[nextRow].appendChild(elements[i])
-    nextRow = (nextRow + 1) % rows.length
-  }
+    for (var i = 0; i < elements.length; i++) {
+      rows[nextRow].appendChild(elements[i])
+      nextRow = (nextRow + 1) % rows.length
+    }
 
-  // Wait for the elements get added to the DOM
-  setTimeout(function () {
-    // Fade in the loading placeholders
-    eachSeriesThrottle(elements, function (el, cb) {
-      el.className = 'hex loading'
-      cb()
-    }, loadingDelayMs)
+    // Wait for the elements get added to the rows
+    window.requestAnimationFrame(function () {
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].className = 'hex loading'
+      }
 
-    // Fade in the images
-    setTimeout(function () {
       eachSeriesThrottle(elements, initContributor, loadingDelayMs)
-    }, 1000)
-  }, 50)
+    })
+  })
 }
 
 function initContributor (el, cb) {
@@ -64,7 +61,7 @@ function initContributor (el, cb) {
   var show = function () { el.className = 'hex show' }
 
   if (img.complete) {
-    setTimeout(function () {
+    window.requestAnimationFrame(function () {
       // Loaded successfully?
       if (img.naturalHeight === 0) {
         console.error('Failed to load ' + img.src)
@@ -72,13 +69,13 @@ function initContributor (el, cb) {
       }
       show()
       cb()
-    }, 25)
+    })
   } else {
     img.onload = function () {
-      setTimeout(function () {
+      window.requestAnimationFrame(function () {
         show()
         cb()
-      }, 25)
+      })
     }
 
     img.onerror = cb
