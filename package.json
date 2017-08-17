@@ -13,6 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "async": "^2.5.0",
+    "async-each-series-throttle": "^1.0.0",
     "debug": "^2.6.8",
     "dnslink-deploy": "^1.0.7",
     "ecstatic": "^2.2.1",

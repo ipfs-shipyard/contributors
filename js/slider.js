@@ -1,4 +1,5 @@
 var shuffle = require('./array').shuffle
+var eachSeriesThrottle = require('async-each-series-throttle')
 var loadingDelayMs = 50
 
 function tesselate (container) {
@@ -36,31 +37,29 @@ function initContributorsSlider (container) {
   window.addEventListener('resize', tesselate.bind(null, container))
 
   var rows = container.querySelectorAll('.row')
-
   var nextRow = 0
-  var lastRender = 0
 
-  function initContributorWithPause (itemIndex) {
-    if (itemIndex >= elements.length) return
-    initContributor(elements[itemIndex], rows[nextRow], function (err) {
-      var nextIndex = itemIndex + 1
-      if (err) initContributorWithPause(nextIndex)
-      var now = Date.now()
-      var diff = now - lastRender
-      var delay = loadingDelayMs - diff
-      if (delay < 0) delay = 0
-      lastRender = now
-      nextRow = (nextRow + 1) % rows.length
-      setTimeout(function () {
-        initContributorWithPause(itemIndex + 1)
-      }, delay)
-    })
+  for (var i = 0; i < elements.length; i++) {
+    rows[nextRow].appendChild(elements[i])
+    nextRow = (nextRow + 1) % rows.length
   }
 
-  initContributorWithPause(0)
+  // Wait for the elements get added to the DOM
+  setTimeout(function () {
+    // Fade in the loading placeholders
+    eachSeriesThrottle(elements, function (el, cb) {
+      el.className = 'hex loading'
+      cb()
+    }, loadingDelayMs)
+
+    // Fade in the images
+    setTimeout(function () {
+      eachSeriesThrottle(elements, initContributor, loadingDelayMs)
+    }, 1000)
+  }, 50)
 }
 
-function initContributor (el, dest, cb) {
+function initContributor (el, cb) {
   var img = el.querySelector('img')
   var show = function () { el.className = 'hex show' }
 
@@ -68,7 +67,8 @@ function initContributor (el, dest, cb) {
     setTimeout(function () {
       // Loaded successfully?
       if (img.naturalHeight === 0) {
-        return cb(new Error('Failed to load ' + el.src))
+        console.error('Failed to load ' + img.src)
+        return cb()
       }
       show()
       cb()
@@ -83,8 +83,6 @@ function initContributor (el, dest, cb) {
 
     img.onerror = cb
   }
-
-  dest.appendChild(el)
 }
 
 module.exports.initContributorsSlider = initContributorsSlider

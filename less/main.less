@@ -34,15 +34,27 @@ html, body {
   }
   .hex {
     display: inline-block;
-    opacity: 0;
-    transition: opacity 300ms ease-in, transform 100ms ease-out;
+    transition: background-color 300ms ease-in, transform 100ms ease-out;
     -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background-color: transparent;
+
+    img {
+      opacity: 0;
+      transition: opacity 300ms ease-in;
+    }
+
+    &.loading {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
 
     &.show {
-      opacity: 1;
       position: relative;
       z-index: 0;
+
+      img {
+        opacity: 1;
+      }
 
       &:hover {
         transform: scale(1.2);
