@@ -110,12 +110,6 @@ make
 
 # Add the site to your local ipfs, you can check it via /ipfs/<hash>
 make deploy
-
-# Save your dnsimple api token as auth.token
-cat "<api token here>" > auth.token
-
-# Update the dns record for libp2p to point to the new ipfs hash.
-make publish-to-domain
 ```
 
 The following commands are available:
